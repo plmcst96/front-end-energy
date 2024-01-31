@@ -1,5 +1,5 @@
-import { Container, Nav, NavDropdown, Navbar } from "react-bootstrap"
-import { Link } from "react-router-dom"
+import { Container, Nav, NavDropdown, Navbar } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const NavBar = () => {
   return (
@@ -11,7 +11,6 @@ const NavBar = () => {
           <Nav className="me-auto">
             <Nav.Link href="#home">Home</Nav.Link>
             <Nav.Link href="#link">Link</Nav.Link>
-
             <NavDropdown title="Dropdown" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">
@@ -24,12 +23,19 @@ const NavBar = () => {
               </NavDropdown.Item>
             </NavDropdown>
             <Nav.Link>
-              <Link to="/login">Login/SingUP</Link>
+              <Link to="/clients" className="text-decoration-none text-black">
+                Clients
+              </Link>
+            </Nav.Link>
+            <Nav.Link>
+              <Link to="/login" className="text-decoration-none text-black">
+                Login/SingUP
+              </Link>
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
     </Navbar>
-  )
-}
-export default NavBar
+  );
+};
+export default NavBar;
