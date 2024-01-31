@@ -13,9 +13,10 @@ import AddressPage from "./components/AddressPage";
 
 function App() {
   return (
-    <Container fluid>
-      <BrowserRouter>
-        {/*  <NavBar /> */}
+    <BrowserRouter>
+      <Container fluid>
+
+        <NavBar />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/prov" element={<Province />} />
@@ -26,8 +27,9 @@ function App() {
           <Route path='/' element={<HomePage />} />
           <Route path="/address" element={<AddressPage />} />
         </Routes>
-      </BrowserRouter>
-    </Container>
+
+      </Container >
+    </BrowserRouter>
   );
 }
 

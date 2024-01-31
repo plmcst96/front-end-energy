@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
 import { Button, Col, Container, Form, Row } from "react-bootstrap"
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 import { Link } from "react-router-dom"
-import { POST_REGISTER, postRegister } from "../redux/action"
+import { postRegister } from "../redux/action"
 
 const Registration = () => {
   const [register, setRegister] = useState({
@@ -12,7 +12,7 @@ const Registration = () => {
     email: "",
     password: "",
   })
-  const registrationData = useSelector((state) => state.content)
+  /* const registrationData = useSelector((state) => state.content) */
   const dispatch = useDispatch()
 
   useEffect(() => {

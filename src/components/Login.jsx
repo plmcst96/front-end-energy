@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react"
 import { Button, Col, Container, Form, Row } from "react-bootstrap"
+import { useDispatch } from "react-redux"
 import { Link } from "react-router-dom"
+import { postLogin } from "../redux/action"
 
 const Login = () => {
   const [login, setLogin] = useState({
@@ -8,29 +10,7 @@ const Login = () => {
     password: "",
   })
 
-  const postLogin = async (e) => {
-    e.preventDefault()
-    try {
-      const res = await fetch("http://localhost:3001/auth/login", {
-        method: "POST",
-        body: JSON.stringify(login),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-      if (res.ok) {
-        const data = await res.json()
-        console.log(data)
-        localStorage.setItem("token", data.token)
-
-        alert("Login effettuato con successo!")
-      } else {
-        throw new Error("The login is fail!")
-      }
-    } catch (error) {
-      console.log("error", error)
-    }
-  }
+  const dispatch = useDispatch()
 
   useEffect(() => {
     setLogin({
@@ -50,7 +30,7 @@ const Login = () => {
               </Link>
             </Col>
             <Col>
-              <Form onSubmit={postLogin}>
+              <Form>
                 <Form.Group className="mb-3">
                   <Form.Label>Email</Form.Label>
                   <Form.Control
@@ -76,7 +56,15 @@ const Login = () => {
                     }}
                   />
                 </Form.Group>
-                <Button type="submit">Login</Button>
+                <Button
+                  type="submit"
+                  onClick={(e) => {
+                    e.preventDefault()
+                    dispatch(postLogin(login))
+                  }}
+                >
+                  Login
+                </Button>
                 <Button className="ms-3" type="submit">
                   <Link to="/register" className="nav-link">
                     SingUp
