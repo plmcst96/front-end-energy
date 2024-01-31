@@ -4,7 +4,7 @@ import { Container } from 'react-bootstrap'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import NavBar from './components/NavBar'
 import HomePage from './components/HomePage'
-import Province from './components/Province'
+import Province from './components/province/Province'
 
 function App() {
   return (

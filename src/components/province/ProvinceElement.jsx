@@ -15,7 +15,7 @@ const ProvinceElement = () => {
             <h3>Regione</h3>
           </div>
         </Col>
-        <Col className="d-flex mt-4">
+        <Col className="d-flex mt-4 justify-content-center">
           <ListGroup>
             {/* qua si fa il map per mostrare tutti  i dati */}
             <ListGroup.Item className="d-flex justify-content-evenly">

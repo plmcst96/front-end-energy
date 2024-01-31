@@ -1,4 +1,4 @@
-import { Container, Row, Col, Button } from 'react-bootstrap'
+import { Container, Row, Col, Button, Pagination } from 'react-bootstrap'
 import ProvinceElement from './ProvinceElement'
 
 const Province = () => {
@@ -10,6 +10,7 @@ const Province = () => {
         </Col>
         <Col className="mt-5">
           <ProvinceElement />
+          {/* <Pagination /> */}
         </Col>
         <Col>
           <Button variant="dark" className="mt-5">
