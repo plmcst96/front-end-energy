@@ -1,12 +1,22 @@
-import { Button, Col, Container, Form, Modal, Row } from "react-bootstrap"
-import SingleClient from "./SingleClient"
-import { useState } from "react"
+import { Button, Col, Container, Form, Modal, Row } from "react-bootstrap";
+import SingleClient from "./SingleClient";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllCLients } from "../redux/action/clients";
 
 const ClientsPage = () => {
-  const [show, setShow] = useState(false)
+  const [show, setShow] = useState(false);
+  const dispatch = useDispatch();
 
-  const handleClose = () => setShow(false)
-  const handleShow = () => setShow(true)
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const clientsData = useSelector((state) => state.client.clients.content);
+
+  useEffect(() => {
+    dispatch(getAllCLients());
+  }, [dispatch]);
+
+  const [searchClientInput, setSearchClientInput] = useState("");
 
   return (
     <Container fluid>
@@ -67,6 +77,14 @@ const ClientsPage = () => {
               <Form.Label>Type</Form.Label>
               <Form.Control type="password" />
             </Form.Group>
+            <Form.Group className="mb-3" controlId="formBasicPassword">
+              <Form.Label>Legal Address</Form.Label>
+              <Form.Control type="password" />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="formBasicPassword">
+              <Form.Label>Operative Address</Form.Label>
+              <Form.Control type="password" />
+            </Form.Group>
           </Form>
         </Modal.Body>
         <Modal.Footer>
@@ -90,7 +108,12 @@ const ClientsPage = () => {
                   <div className="d-flex justify-content-center mb-1 mt-2">
                     <Form.Label>Search client</Form.Label>
                   </div>
-                  <Form.Control placeholder="Insert the name" />
+                  <Form.Control
+                    placeholder="Insert the name"
+                    onChange={(e) => {
+                      setSearchClientInput(e.target.value);
+                    }}
+                  />
                 </Form.Group>
               </Form>
             </div>
@@ -102,17 +125,24 @@ const ClientsPage = () => {
               <h1>Lista clienti</h1>
             </div>
             <Row className="p-0">
-              <SingleClient />
-              <SingleClient />
-              <SingleClient />
-              <SingleClient />
-              <SingleClient />
+              <Row className="p-0">
+                {clientsData &&
+                  clientsData
+                    .filter((client) =>
+                      client.businessName
+                        .toLowerCase()
+                        .includes(searchClientInput.toLowerCase())
+                    )
+                    .map((client) => {
+                      return <SingleClient client={client} key={client.uuid} />;
+                    })}
+              </Row>
             </Row>
           </div>
         </Col>
       </Row>
     </Container>
-  )
-}
+  );
+};
 
-export default ClientsPage
+export default ClientsPage;
