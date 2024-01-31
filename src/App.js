@@ -9,6 +9,7 @@ import Town from "./components/town/Town";
 import ClientsPage from "./components/ClientsPage";
 import Login from './components/Login';
 import Registration from './components/Registration';
+import AddressPage from "./components/AddressPage";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Registration />} />
           <Route path='/' element={<HomePage />} />
+          <Route path="/address" element={<AddressPage />} />
         </Routes>
       </BrowserRouter>
     </Container>
