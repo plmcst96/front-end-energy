@@ -1,5 +1,6 @@
 export const POST_REGISTER = "POST_REGISTER";
 export const POST_LOGIN = "POST_LOGIN";
+export const POST_ADDRESS ="POST_ADDRESS";
 
 export const APIKEY =
     "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI3YTM5NTBkOS03YTAzLTQ5MWYtYjUwYS1lNDZhZWFkZjQxYzgiLCJpYXQiOjE3MDY3MDk3NjcsImV4cCI6MTcwNzMxNDU2N30.pW8i8TbnNG4juzFST-V_d00LeeP3CrOdxehVsldShUY";
@@ -53,6 +54,34 @@ export const postLogin = (login) => {
                 alert("Login effettuato con successo!")
             } else {
                 throw new Error("The login is fail!")
+            }
+        } catch (error) {
+            console.log("error", error)
+        }
+    }
+}
+export const postAddress = (address) => {
+    return async (dispatch) => {
+        try {
+            const res = await fetch("http://localhost:3001/api/addresses", {
+                method: "POST",
+                body: JSON.stringify(address),
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            })
+            if (res.ok) {
+                const data = await res.json()
+                console.log(data)
+                dispatch({
+                    type: POST_ADDRESS,
+                    payload: data
+                })
+            
+
+                alert("address saved correctly")
+            } else {
+                throw new Error("The Address is fail!")
             }
         } catch (error) {
             console.log("error", error)
