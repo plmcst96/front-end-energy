@@ -57,7 +57,6 @@ const Registration = () => {
                   <Form.Label>Name</Form.Label>
                   <Form.Control
                     type="text"
-                    value={register.name}
                     onchange={(e) => {
                       setRegister({
                         ...register,
