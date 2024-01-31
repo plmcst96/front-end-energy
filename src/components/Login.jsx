@@ -19,6 +19,7 @@ const Login = () => {
         },
       })
       if (res.ok) {
+        console.log(login)
         alert("Login effettuato con successo!")
       } else {
         throw new Error("The login is fail!")
@@ -47,16 +48,12 @@ const Login = () => {
             </Col>
             <Col>
               <Form onSubmit={postLogin}>
-                <Form.Group
-                  className="mb-3"
-                  controlId="exampleForm.ControlInput1"
-                >
+                <Form.Group className="mb-3">
                   <Form.Label>Email</Form.Label>
                   <Form.Control
                     type="email"
                     placeholder="name@example.com"
-                    value={login.email}
-                    onchange={(e) => {
+                    onChange={(e) => {
                       setLogin({
                         ...login,
                         email: e.target.value,
@@ -64,15 +61,11 @@ const Login = () => {
                     }}
                   />
                 </Form.Group>
-                <Form.Group
-                  className="mb-3"
-                  controlId="exampleForm.ControlPsw1"
-                >
+                <Form.Group className="mb-3">
                   <Form.Label>Password</Form.Label>
                   <Form.Control
                     type="password"
-                    value={login.password}
-                    onchange={(e) => {
+                    onChange={(e) => {
                       setLogin({
                         ...login,
                         password: e.target.value,
@@ -80,8 +73,8 @@ const Login = () => {
                     }}
                   />
                 </Form.Group>
-                <Button>Login</Button>
-                <Button className="ms-3">
+                <Button type="submit">Login</Button>
+                <Button className="ms-3" type="submit">
                   <Link to="/register" className="nav-link">
                     SingUp
                   </Link>

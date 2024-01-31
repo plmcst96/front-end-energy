@@ -50,14 +50,11 @@ const Registration = () => {
             </Col>
             <Col>
               <Form onSubmit={postRegister}>
-                <Form.Group
-                  className="mb-3"
-                  controlId="exampleForm.ControlInput1"
-                >
+                <Form.Group className="mb-3">
                   <Form.Label>Name</Form.Label>
                   <Form.Control
                     type="text"
-                    onchange={(e) => {
+                    onChange={(e) => {
                       setRegister({
                         ...register,
                         name: e.target.value,
@@ -65,15 +62,11 @@ const Registration = () => {
                     }}
                   />
                 </Form.Group>
-                <Form.Group
-                  className="mb-3"
-                  controlId="exampleForm.ControlPsw1"
-                >
+                <Form.Group className="mb-3">
                   <Form.Label>Surname</Form.Label>
                   <Form.Control
                     type="text"
-                    value={register.surname}
-                    onchange={(e) => {
+                    onChange={(e) => {
                       setRegister({
                         ...register,
                         surname: e.target.value,
@@ -81,19 +74,12 @@ const Registration = () => {
                     }}
                   />
                 </Form.Group>
-                <Form.Group
-                  className="mb-3"
-                  controlId="exampleForm.ControlPsw1"
-                >
-                  <Form.Group
-                    className="mb-3"
-                    controlId="exampleForm.ControlPsw1"
-                  >
+                <Form.Group className="mb-3">
+                  <Form.Group className="mb-3">
                     <Form.Label>Username</Form.Label>
                     <Form.Control
                       type="text"
-                      value={register.username}
-                      onchange={(e) => {
+                      onChange={(e) => {
                         setRegister({
                           ...register,
                           username: e.target.value,
@@ -105,8 +91,7 @@ const Registration = () => {
                   <Form.Control
                     type="email"
                     placeholder="name@example.com"
-                    value={register.email}
-                    onchange={(e) => {
+                    onChange={(e) => {
                       setRegister({
                         ...register,
                         email: e.target.value,
@@ -114,15 +99,11 @@ const Registration = () => {
                     }}
                   />
                 </Form.Group>
-                <Form.Group
-                  className="mb-3"
-                  controlId="exampleForm.ControlPsw1"
-                >
+                <Form.Group className="mb-3">
                   <Form.Label>Password</Form.Label>
                   <Form.Control
                     type="password"
-                    value={register.password}
-                    onchange={(e) => {
+                    onChange={(e) => {
                       setRegister({
                         ...register,
                         password: e.target.value,
@@ -130,7 +111,11 @@ const Registration = () => {
                     }}
                   />
                 </Form.Group>
-                <Button>SingUp</Button>
+                <Button type="submit">
+                  <Link to="/login" className="nav-link">
+                    SingUp
+                  </Link>
+                </Button>
               </Form>
             </Col>
           </Row>
