@@ -4,6 +4,8 @@ import { Container } from 'react-bootstrap';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import NavBar from './components/NavBar';
 import HomePage from './components/HomePage';
+import Login from './components/Login';
+import Registration from './components/Registration';
 
 function App() {
   return (
@@ -12,6 +14,8 @@ function App() {
       <BrowserRouter>
         <NavBar />
         <Routes>
+          <Route path='/login' element={<Login />} />
+          <Route path='/register' element={<Registration />} />
           <Route path='/' element={<HomePage />} />
         </Routes>
       </BrowserRouter>

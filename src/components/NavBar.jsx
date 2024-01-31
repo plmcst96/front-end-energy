@@ -23,9 +23,10 @@ const NavBar = () => {
                 Separated link
               </NavDropdown.Item>
             </NavDropdown>
-            <Nav.Link>
-              <Link to="/login">Login/SingUP</Link>
-            </Nav.Link>
+
+            <Link to="/login" className="nav-link ">
+              Login/SingUP
+            </Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
