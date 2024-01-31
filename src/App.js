@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import NavBar from './components/NavBar'
 import HomePage from './components/HomePage'
 import Province from './components/province/Province'
+import Town from './components/town/Town'
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/prov" element={<Province />} />
+          <Route path="/town" element={<Town />} />
         </Routes>
       </BrowserRouter>
     </Container>
