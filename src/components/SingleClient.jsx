@@ -12,20 +12,25 @@ const SingleClient = ({ client }) => {
       <Col>
         <Row className="border border-secondary rounded g-2 py-1 ">
           {/* <Col className="p-0 text-center">Client Number</Col> */}
-          <Col xs={4} className="p-0 text-center mt-4 fw-bold ">
+          <Col className="p-0 text-center mt-4 ms-1 fw-bold ">
             {client.businessName}
           </Col>
-
-          <Col xs={6} className="ms-3 text-center">
-            <div className="d-flex gap-2 flex-column">
-              <p>{client.email}</p>
-              <p>{client.vatnumber}</p>
-            </div>
+          <Col className="text-center mt-4">
+            <p>{client.email}</p>
           </Col>
-          <Col xs={1} className="cursor">
+          <Col className="p-0 text-center mt-4">
+            {client.telephoneNumberContact}
+          </Col>
+          <Col className="p-0 text-center mt-4">
+            <p>{client.vatnumber}</p>
+          </Col>
+          <Col className="p-0 text-center mt-4">
+            <p>{client.inputDate}</p>
+          </Col>
+          <Col className="cursor">
             <div className="d-flex justify-content-center">
               <Trash3Fill
-                className="mt-4"
+                className="mt-3 text-danger fs-5"
                 onClick={() => {
                   dispatch(removeClient(client.uuid)).then(() => {
                     dispatch(getAllCLients());
