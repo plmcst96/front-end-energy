@@ -7,6 +7,8 @@ import HomePage from "./components/HomePage";
 import Province from "./components/province/Province";
 import Town from "./components/town/Town";
 import ClientsPage from "./components/ClientsPage";
+import Login from './components/Login';
+import Registration from './components/Registration';
 
 function App() {
   return (
@@ -18,6 +20,9 @@ function App() {
           <Route path="/prov" element={<Province />} />
           <Route path="/town" element={<Town />} />
           <Route path="/clients" element={<ClientsPage />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/register' element={<Registration />} />
+          <Route path='/' element={<HomePage />} />
         </Routes>
       </BrowserRouter>
     </Container>
