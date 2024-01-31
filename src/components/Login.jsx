@@ -1,7 +1,40 @@
+import { useEffect, useState } from "react"
 import { Button, Col, Container, Form, Row } from "react-bootstrap"
 import { Link } from "react-router-dom"
 
 const Login = () => {
+  const [login, setLogin] = useState({
+    email: "",
+    password: "",
+  })
+
+  const postLogin = async (e) => {
+    e.preventDefault()
+    try {
+      const res = await fetch("http://localhost:3001/auth/login", {
+        method: "POST",
+        body: JSON.stringify(login),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      if (res.ok) {
+        alert("Login effettuato con successo!")
+      } else {
+        throw new Error("The login is fail!")
+      }
+    } catch (error) {
+      console.log("error", error)
+    }
+  }
+
+  useEffect(() => {
+    setLogin({
+      ...login,
+    })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   return (
     <Container className="mt-5">
       <Row className="d-flex justify-content-center">
@@ -13,20 +46,39 @@ const Login = () => {
               </Link>
             </Col>
             <Col>
-              <Form>
+              <Form onSubmit={postLogin}>
                 <Form.Group
                   className="mb-3"
                   controlId="exampleForm.ControlInput1"
                 >
                   <Form.Label>Email</Form.Label>
-                  <Form.Control type="email" placeholder="name@example.com" />
+                  <Form.Control
+                    type="email"
+                    placeholder="name@example.com"
+                    value={login.email}
+                    onchange={(e) => {
+                      setLogin({
+                        ...login,
+                        email: e.target.value,
+                      })
+                    }}
+                  />
                 </Form.Group>
                 <Form.Group
                   className="mb-3"
                   controlId="exampleForm.ControlPsw1"
                 >
                   <Form.Label>Password</Form.Label>
-                  <Form.Control type="password" />
+                  <Form.Control
+                    type="password"
+                    value={login.password}
+                    onchange={(e) => {
+                      setLogin({
+                        ...login,
+                        password: e.target.value,
+                      })
+                    }}
+                  />
                 </Form.Group>
                 <Button>Login</Button>
                 <Button className="ms-3">
