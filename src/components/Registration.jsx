@@ -30,7 +30,7 @@ const Registration = () => {
               </Link>
             </Col>
             <Col>
-              <Form onSubmit={postRegister}>
+              <Form onClick={postRegister}>
                 <Form.Group className="mb-3">
                   <Form.Label>Name</Form.Label>
                   <Form.Control
@@ -96,7 +96,6 @@ const Registration = () => {
                   type="submit"
                   onClick={(e) => {
                     e.preventDefault();
-                    console.log(register);
                     dispatch({
                       type: POST_REGISTER,
                       payload: register,
