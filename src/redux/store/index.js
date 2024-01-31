@@ -1,13 +1,12 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import registerReducer from "../reducers/register";
 
-
 const bigReducer = combineReducers({
-    register: registerReducer
-})
+  register: registerReducer,
+});
 
 const store = configureStore({
-    reducer: bigReducer,
-})
+  reducer: bigReducer,
+});
 
-export default store
+export default store;

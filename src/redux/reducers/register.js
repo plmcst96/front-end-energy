@@ -1,20 +1,20 @@
 import { POST_REGISTER } from "../action";
 
 const initialState = {
-    content: null,
-    token: ""
-}
+  content: null,
+  token: "",
+};
 
 const registerReducer = (state = initialState, action) => {
-    switch (action.type) {
-        case POST_REGISTER:
-            return {
-                ...state,
-                content: action.payload,
-            }
-        default:
-            return state
-    }
-}
+  switch (action.type) {
+    case POST_REGISTER:
+      return {
+        ...state,
+        content: action.payload,
+      };
+    default:
+      return state;
+  }
+};
 
-export default registerReducer
+export default registerReducer;
