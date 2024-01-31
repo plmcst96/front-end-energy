@@ -94,9 +94,7 @@ const Registration = () => {
                 </Form.Group>
                 <Button
                   type="submit"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    console.log(register);
+                  onSubmit={() => {
                     dispatch({
                       type: POST_REGISTER,
                       payload: register,
