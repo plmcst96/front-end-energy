@@ -7,6 +7,7 @@ import HomePage from "./components/HomePage";
 import Province from "./components/province/Province";
 import Town from "./components/town/Town";
 import ClientsPage from "./components/ClientsPage";
+import AddressPage from "./components/AddressPage";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/prov" element={<Province />} />
           <Route path="/town" element={<Town />} />
           <Route path="/clients" element={<ClientsPage />} />
+          <Route path="/address" element={<AddressPage />} />
         </Routes>
       </BrowserRouter>
     </Container>

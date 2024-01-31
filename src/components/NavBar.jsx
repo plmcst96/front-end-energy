@@ -32,6 +32,11 @@ const NavBar = () => {
                 Login/SingUP
               </Link>
             </Nav.Link>
+             <Nav.Link>
+              <Link to="/address" className="text-decoration-none text-black">
+                Address
+              </Link>
+            </Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
