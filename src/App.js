@@ -8,8 +8,9 @@ import HomePage from './components/HomePage';
 function App() {
   return (
     <Container fluid>
-      <NavBar />
+
       <BrowserRouter>
+        <NavBar />
         <Routes>
           <Route path='/' element={<HomePage />} />
         </Routes>

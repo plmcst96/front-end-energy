@@ -11,6 +11,7 @@ const NavBar = () => {
           <Nav className="me-auto">
             <Nav.Link href="#home">Home</Nav.Link>
             <Nav.Link href="#link">Link</Nav.Link>
+
             <NavDropdown title="Dropdown" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">
@@ -22,10 +23,10 @@ const NavBar = () => {
                 Separated link
               </NavDropdown.Item>
             </NavDropdown>
+            <Nav.Link>
+              <Link to="/login">Login/SingUP</Link>
+            </Nav.Link>
           </Nav>
-          <Nav.Link>
-            <Link to="/login">Login/SingUP</Link>
-          </Nav.Link>
         </Navbar.Collapse>
       </Container>
     </Navbar>
