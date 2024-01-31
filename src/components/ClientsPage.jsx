@@ -1,12 +1,12 @@
-import { Button, Col, Container, Form, Modal, Row } from "react-bootstrap";
-import SingleClient from "./SingleClient";
-import { useState } from "react";
+import { Button, Col, Container, Form, Modal, Row } from "react-bootstrap"
+import SingleClient from "./SingleClient"
+import { useState } from "react"
 
 const ClientsPage = () => {
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(false)
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleClose = () => setShow(false)
+  const handleShow = () => setShow(true)
 
   return (
     <Container fluid>
@@ -112,7 +112,7 @@ const ClientsPage = () => {
         </Col>
       </Row>
     </Container>
-  );
-};
+  )
+}
 
-export default ClientsPage;
+export default ClientsPage

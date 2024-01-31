@@ -1,40 +1,21 @@
 import { useEffect, useState } from "react"
 import { Button, Col, Container, Form, Row } from "react-bootstrap"
+import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
+import { POST_REGISTER, postRegister } from "../redux/action"
 
 const Registration = () => {
   const [register, setRegister] = useState({
-    email: "",
-    password: "",
     name: "",
     surname: "",
     username: "",
+    email: "",
+    password: "",
   })
-
-  const postRegister = async (e) => {
-    e.preventDefault()
-    try {
-      const res = await fetch("http://localhost:3001/auth/register", {
-        method: "POST",
-        body: JSON.stringify(register),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-      if (res.ok) {
-        alert("Login effettuato con successo!")
-      } else {
-        throw new Error("The login is fail!")
-      }
-    } catch (error) {
-      console.log("error", error)
-    }
-  }
+  const registrationData = useSelector((state) => state.content)
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    setRegister({
-      ...register,
-    })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -111,7 +92,15 @@ const Registration = () => {
                     }}
                   />
                 </Form.Group>
-                <Button type="submit">
+                <Button
+                  type="submit"
+                  onSubmit={() => {
+                    dispatch({
+                      type: POST_REGISTER,
+                      payload: register,
+                    })
+                  }}
+                >
                   <Link to="/login" className="nav-link">
                     SingUp
                   </Link>

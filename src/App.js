@@ -14,7 +14,7 @@ function App() {
   return (
     <Container fluid>
       <BrowserRouter>
-        <NavBar />
+        {/*  <NavBar /> */}
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/prov" element={<Province />} />

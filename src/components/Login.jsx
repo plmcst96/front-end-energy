@@ -19,7 +19,10 @@ const Login = () => {
         },
       })
       if (res.ok) {
-        console.log(login)
+        const data = await res.json()
+        console.log(data)
+        localStorage.setItem("token", data.token)
+
         alert("Login effettuato con successo!")
       } else {
         throw new Error("The login is fail!")
