@@ -15,7 +15,6 @@ function App() {
   return (
     <BrowserRouter>
       <Container fluid>
-
         <NavBar />
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -27,7 +26,6 @@ function App() {
           <Route path='/' element={<HomePage />} />
           <Route path="/address" element={<AddressPage />} />
         </Routes>
-
       </Container >
     </BrowserRouter>
   );
