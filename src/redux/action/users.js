@@ -30,3 +30,26 @@ export const getUsers = (user) => {
     }
   }
 }
+
+export const removeUser = (id) => {
+  return async (dispatch) => {
+    try {
+      const response = await fetch('http://localhost:3001/users/' + id, {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      if (response.ok) {
+        dispatch({
+          type: DELETE_USER,
+          payload: id,
+        })
+      } else {
+        throw new Error("Errore nell'eliminazione dell'utente")
+      }
+    } catch (error) {
+      console.log('Error', error)
+    }
+  }
+}
