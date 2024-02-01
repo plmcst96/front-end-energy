@@ -1,5 +1,6 @@
 import { Container, Row, Col, Button, Pagination } from 'react-bootstrap'
 import TownElement from './TownElement'
+import { Link } from 'react-router-dom'
 
 const Town = () => {
   return (
@@ -13,9 +14,11 @@ const Town = () => {
           {/* <Pagination /> */}
         </Col>
         <Col>
-          <Button variant="dark" className="mt-5">
-            Indietro
-          </Button>
+          <Link to="/">
+            <Button variant="dark" className="mt-5">
+              Indietro
+            </Button>
+          </Link>
         </Col>
       </Row>
     </Container>
