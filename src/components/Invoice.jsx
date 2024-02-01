@@ -78,7 +78,24 @@ const Invoice = () => {
                 controlId="exampleForm.ControlInput1"
               >
                 <Form.Label>Invoice State</Form.Label>
-                <Form.Control
+                <Form.Select
+                  aria-label="Default select example"
+                  onChange={(e) => {
+                    setInvoice({
+                      ...invoice,
+                      invoiceState: e.target.value,
+                    })
+                  }}
+                >
+                  <option>Select State</option>
+                  <option>IN_PROGRESS</option>
+                  <option>SENT</option>
+                  <option>DRAFT</option>
+                  <option>DISCARDED</option>
+                  <option>DELIVERED</option>
+                  <option>SENT_NOT_DELIVERED</option>
+                </Form.Select>
+                {/*  <Form.Control
                   type="text"
                   onChange={(e) => {
                     setInvoice({
@@ -86,7 +103,7 @@ const Invoice = () => {
                       invoiceState: e.target.value,
                     })
                   }}
-                />
+                /> */}
               </Form.Group>
               <Form.Group
                 className="mb-3"
