@@ -177,7 +177,7 @@ export const getAddress = () => {
         }
     }
 }
-}
+
 
 export const removeAddress = (id) => {
     return async (dispatch) => {
