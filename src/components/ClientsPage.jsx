@@ -236,9 +236,24 @@ const ClientsPage = () => {
                 Add client
               </Button>
             </div>
-            <div>Filtra per: </div>
-            <div>Fatturato Annuale</div>
           </div>
+        </Col>
+        <Col md={8}>
+          <Form className="d-flex flex-column flex-grow-1 border border-secondary rounded">
+            <div>Filtra per: </div>
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Label>Fatturato Annuale</Form.Label>
+              <Form.Control type="email" placeholder="Enter email" />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formBasicPassword">
+              <Form.Label>Password</Form.Label>
+              <Form.Control type="password" placeholder="Password" />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="formBasicCheckbox">
+              <Form.Check type="checkbox" label="Check me out" />
+            </Form.Group>
+          </Form>
         </Col>
         <Col className="p-0 mt-4" xs={12} md={10}>
           <div className="border border-1 border-black  rounded-3 ">
