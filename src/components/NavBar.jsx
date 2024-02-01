@@ -1,6 +1,6 @@
-import { Container, Image, Nav, NavDropdown, Navbar } from "react-bootstrap"
-import { Link } from "react-router-dom"
-import logo from "../logo.png"
+import { Container, Image, Nav, NavDropdown, Navbar } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
+import logo from '../logo.png'
 
 const NavBar = () => {
   return (
@@ -9,7 +9,7 @@ const NavBar = () => {
         <Image
           src={logo}
           className="rounded-circle me-5"
-          style={{ width: "70px" }}
+          style={{ width: '70px' }}
         />
 
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -34,17 +34,14 @@ const NavBar = () => {
               </NavDropdown.Item>
               <NavDropdown.Item>
                 <Link
-                  to="/address/province"
+                  to="/province"
                   className="text-decoration-none text-black"
                 >
                   Province List
                 </Link>
               </NavDropdown.Item>
               <NavDropdown.Item>
-                <Link
-                  to="/address/town"
-                  className="text-decoration-none text-black"
-                >
+                <Link to="/town" className="text-decoration-none text-black">
                   Town List
                 </Link>
               </NavDropdown.Item>
@@ -58,7 +55,7 @@ const NavBar = () => {
               <Link
                 to="/login"
                 className="text-decoration-none text-black"
-                style={{ marginLeft: "800px" }}
+                style={{ marginLeft: '800px' }}
               >
                 Login/SingUP
               </Link>
