@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import Pagination from "react-bootstrap/Pagination";
+=======
+import Pagination from 'react-bootstrap/Pagination'
+>>>>>>> origin/develop
 
 const pagination = () => {
   return (
@@ -19,7 +23,14 @@ const pagination = () => {
       <Pagination.Next />
       <Pagination.Last />
     </Pagination>
+<<<<<<< HEAD
   );
 };
 
 export default pagination;
+=======
+  )
+}
+
+export default pagination
+>>>>>>> origin/develop
