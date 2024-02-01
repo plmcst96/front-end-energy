@@ -14,6 +14,7 @@ const Registration = () => {
   });
   const registrationData = useSelector((state) => state.content);
   const dispatch = useDispatch();
+  /* const registrationData = useSelector((state) => state.content) */
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -14,9 +14,9 @@ import ClientProfile from "./components/ClientProfile";
 
 function App() {
   return (
-    <Container fluid>
-      <BrowserRouter>
-        {/*  <NavBar /> */}
+    <BrowserRouter>
+      <Container fluid>
+        <NavBar />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/prov" element={<Province />} />
@@ -28,8 +28,8 @@ function App() {
           <Route path="/address" element={<AddressPage />} />
           <Route path="/clients/:uuid" element={<ClientProfile />} />
         </Routes>
-      </BrowserRouter>
-    </Container>
+      </Container >
+    </BrowserRouter>
   );
 }
 

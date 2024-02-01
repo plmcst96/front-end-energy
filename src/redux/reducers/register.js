@@ -1,4 +1,4 @@
-import { POST_REGISTER } from "../action";
+import { POST_LOGIN, POST_REGISTER } from "../action";
 
 const initialState = {
   content: null,
@@ -12,6 +12,11 @@ const registerReducer = (state = initialState, action) => {
         ...state,
         content: action.payload,
       };
+    case POST_LOGIN:
+      return {
+        ...state,
+        token: action.payload,
+      }
     default:
       return state;
   }

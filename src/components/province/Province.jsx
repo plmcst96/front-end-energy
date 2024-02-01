@@ -1,4 +1,4 @@
-import { Container, Row, Col, Button, Pagination } from 'react-bootstrap'
+import { Container, Row, Col, Button } from 'react-bootstrap'
 import ProvinceElement from './ProvinceElement'
 
 const Province = () => {
