@@ -5,7 +5,7 @@ export const GET_SINGLE_CLIENT = "GET_SINGLE_CLIENT";
 export const GET_CLIENTS_WITH_FILTER = "GET_CLIENTS_WITH_FILTER";
 
 export const token =
-  "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiI4YzdiZjYyZS05ZjYyLTRkM2ItYTBiNi03MzllZjI2MWQ4NjciLCJpYXQiOjE3MDY4MDU5OTAsImV4cCI6MTcwNzQxMDc5MH0.e5ofznJnxrjLFDLng29KFa2jmKW6SjGjpLYdoxuFc_BuGYIagaP70qQg12qXNVYW";
+  "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjNWY0M2NhZC1iMGMyLTRjNTQtYWE2YS1jYjA4ZWRiYzAzODIiLCJpYXQiOjE3MDY4MTI4ODAsImV4cCI6MTcwNzQxNzY4MH0.3pquCssLsOtsPKgcJksbWyh3X-UDbaxJpx1oV2ksi5M";
 export const getAllCLients = () => {
   return async (dispatch) => {
     try {

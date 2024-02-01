@@ -4,7 +4,7 @@ export const SET_ADMIN = 'SET_ADMIN'
 export const SET_USER = 'SET_USER'
 
 export const token =
-  'eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiIyYzJmZjY2Ni02YTlmLTQxMDItOGNlYy00MGUyNTVhMTcyMWUiLCJpYXQiOjE3MDY4MDMyODMsImV4cCI6MTcwNzQwODA4M30.Z5H2gFFKxox9x2_CYGkkNrPa9Awz5zY-_Vtomu-uV06JyCcDOThqQkc36BmTPlKM'
+  'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjNWY0M2NhZC1iMGMyLTRjNTQtYWE2YS1jYjA4ZWRiYzAzODIiLCJpYXQiOjE3MDY4MTI4ODAsImV4cCI6MTcwNzQxNzY4MH0.3pquCssLsOtsPKgcJksbWyh3X-UDbaxJpx1oV2ksi5M'
 
 export const getUsers = (user) => {
   return async (dispatch) => {
