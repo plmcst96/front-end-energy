@@ -1,5 +1,6 @@
-import { Container, Row, Col, Button } from 'react-bootstrap'
+import { Container, Row, Col, Button, Pagination } from 'react-bootstrap'
 import ProvinceElement from './ProvinceElement'
+import { Link } from 'react-router-dom'
 
 const Province = () => {
   return (
@@ -13,9 +14,11 @@ const Province = () => {
           {/* <Pagination /> */}
         </Col>
         <Col>
-          <Button variant="dark" className="mt-5">
-            Indietro
-          </Button>
+          <Link to="/address">
+            <Button variant="dark" className="mt-5">
+              Indietro
+            </Button>
+          </Link>
         </Col>
       </Row>
     </Container>

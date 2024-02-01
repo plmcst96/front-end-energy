@@ -1,65 +1,54 @@
 import { Container, Row, Col, ListGroup } from 'react-bootstrap'
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { getTown } from '../../redux/action'
 
 const TownElement = () => {
-  const [town, setTown] = useState([{}])
-  const getTown = () => {
-    fetch('http://localhost:3001/town?page=0&size=30&orderBy=uuid', {
-      headers: {
-        Authorization:
-          'Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiIyYzJmZjY2Ni02YTlmLTQxMDItOGNlYy00MGUyNTVhMTcyMWUiLCJpYXQiOjE3MDY3MDA1OTcsImV4cCI6MTcwNzMwNTM5N30.SLeqiiCVTUMQZdHnkcdMgLAv1u3Y6LxtAqRO3r9nOeLgfky3IvBKvGujaJ4dFV_3 ',
-      },
-    })
-      .then((response) => {
-        if (response.ok) {
-          return response.json()
-        } else {
-          throw new Error('Errore nel recupero delle province')
-        }
-      })
-      .then((data) => {
-        console.log('Fetch completata, dati recuperati', data)
-        setTown(data.content)
-      })
-      .catch((error) => {
-        console.log('Error!', error)
-      })
-  }
+  const townData = useSelector((state) => state.town.content)
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    getTown()
-  }, [])
+    dispatch(getTown())
+  }, [dispatch])
 
   return (
     <Container>
       <Row className="flex-column">
         <Col className="d-flex justify-content-evenly">
-          <div>
+          <div className="me-5 ps-4">
             <h3>Denominazione in Italiano</h3>
           </div>
-          <div>
+          <div className="me-5 ps-4">
             <h3>Progressivo del Comune</h3>
           </div>
-          <div>
+          <div className="me-5 ps-4">
             <h3>Provincia</h3>
           </div>
-          <div>
+          <div className="me-5 ps-4">
             <h3>Codice Provincia</h3>
           </div>
         </Col>
         <Col className="d-flex mt-4 justify-content-around">
           <ListGroup className="w-100">
-            {town &&
-              town.map((townItem, index) => {
+            {townData &&
+              townData.map((townItem, index) => {
                 return (
                   <ListGroup.Item
                     key={index}
                     className="d-flex justify-content-evenly"
                   >
-                    <div className="me-5">{townItem.name}</div>
-                    <div className="mx-5">{townItem.municipalSerialNumber}</div>
-                    <div className="ms-5">{townItem.province.name}</div>
-                    <div className="ms-5">{townItem.provinceCode}</div>
+                    <Col sm={3} className="me-5 ps-4">
+                      {townItem.name}
+                    </Col>
+                    <Col sm={1} className="mx-5 ps-4">
+                      {townItem.municipalSerialNumber}
+                    </Col>
+                    <Col sm={1} className="ms-5 ps-4">
+                      {townItem.province.name}
+                    </Col>
+                    <Col sm={1} className="ms-5 ps-4">
+                      {townItem.provinceCode}
+                    </Col>
                   </ListGroup.Item>
                 )
               })}
