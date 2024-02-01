@@ -52,6 +52,11 @@ const NavBar = () => {
               </Link>
             </Nav.Link>
             <Nav.Link>
+              <Link to="/user" className="text-decoration-none text-black">
+                User
+              </Link>
+            </Nav.Link>
+            <Nav.Link>
               <Link
                 to="/login"
                 className="text-decoration-none text-black"
