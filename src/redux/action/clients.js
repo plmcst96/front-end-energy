@@ -105,6 +105,7 @@ export const getSingleClient = (uuid) => {
 
 export const getAllCLientsWithFilter = (filtersClients) => {
   const minAmount = filtersClients.minAmount;
+  console.log(minAmount);
   const maxAmount = filtersClients.maxAmount;
   return async (dispatch) => {
     try {
