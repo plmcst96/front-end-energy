@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react"
-import { Button, Col, Container, Form, Row } from "react-bootstrap"
-import { useDispatch } from "react-redux"
-import { Link } from "react-router-dom"
-import { postRegister } from "../redux/action"
+import { useEffect, useState } from "react";
+import { Button, Col, Container, Form, Row } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { POST_REGISTER, postRegister } from "../redux/action";
 
 const Registration = () => {
   const [register, setRegister] = useState({
@@ -11,13 +11,14 @@ const Registration = () => {
     username: "",
     email: "",
     password: "",
-  })
+  });
+  const registrationData = useSelector((state) => state.content);
+  const dispatch = useDispatch();
   /* const registrationData = useSelector((state) => state.content) */
-  const dispatch = useDispatch()
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, []);
 
   return (
     <Container className="mt-5">
@@ -39,7 +40,7 @@ const Registration = () => {
                       setRegister({
                         ...register,
                         name: e.target.value,
-                      })
+                      });
                     }}
                   />
                 </Form.Group>
@@ -51,7 +52,7 @@ const Registration = () => {
                       setRegister({
                         ...register,
                         surname: e.target.value,
-                      })
+                      });
                     }}
                   />
                 </Form.Group>
@@ -64,7 +65,7 @@ const Registration = () => {
                         setRegister({
                           ...register,
                           username: e.target.value,
-                        })
+                        });
                       }}
                     />
                   </Form.Group>
@@ -76,7 +77,7 @@ const Registration = () => {
                       setRegister({
                         ...register,
                         email: e.target.value,
-                      })
+                      });
                     }}
                   />
                 </Form.Group>
@@ -88,15 +89,15 @@ const Registration = () => {
                       setRegister({
                         ...register,
                         password: e.target.value,
-                      })
+                      });
                     }}
                   />
                 </Form.Group>
                 <Button
                   type="submit"
                   onClick={(e) => {
-                    e.preventDefault()
-                    dispatch(postRegister(register))
+                    e.preventDefault();
+                    dispatch(postRegister(register));
                   }}
                 >
                   <Link to="/login" className="nav-link">
@@ -109,6 +110,6 @@ const Registration = () => {
         </Col>
       </Row>
     </Container>
-  )
-}
-export default Registration
+  );
+};
+export default Registration;
