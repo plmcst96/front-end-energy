@@ -17,15 +17,15 @@ const AddressPage = () => {
 
   useEffect(() => {
     dispatch(getAddress())
-  }, [dispatch])
+  }, [])
 
   return (
-    <Container fluid>
+    <Container fluid className="mt-5">
       <Row className=" ms-1 px-4 mb-3">
         <Col>
           <Row className="border border-secondary rounded  ">
             {/* <Col className="p-0 text-center">Client Number</Col> */}
-            <Form>
+            <Form className="p-4">
               <Form.Group
                 className="mb-3"
                 controlId="exampleForm.ControlInput1"
@@ -114,8 +114,26 @@ const AddressPage = () => {
           </Row>
         </Col>
       </Row>
-      <Row>
-        <Col>
+      <Row className="p-4">
+        <Col className="border border-secondary rounded ms-3 py-4">
+          <Row className="ms-1 mb-3 d-flex justify-content-center">
+            <Col sm={2} className="text-center fw-semibold">
+              Street
+            </Col>
+            <Col sm={2} className="text-center fw-semibold">
+              Street Number
+            </Col>
+            <Col sm={2} className="text-center fw-semibold">
+              District
+            </Col>
+            <Col sm={2} className="text-center fw-semibold">
+              ZipCode
+            </Col>
+            <Col sm={2} className="text-center fw-semibold">
+              Town
+            </Col>
+            <Col sm={2}></Col>
+          </Row>
           <ListGroup>
             {addressData &&
               addressData.map((add) => (

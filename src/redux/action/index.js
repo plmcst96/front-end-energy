@@ -109,7 +109,7 @@ export const getAddress = () => {
                 })
 
 
-                alert("List address has been load correctly")
+                console.log("List address has been load correctly")
             } else {
                 throw new Error("The Address list is fail!")
             }
