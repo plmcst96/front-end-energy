@@ -28,13 +28,25 @@ const NavBar = () => {
 
             <NavDropdown title="Address" id="basic-nav-dropdown">
               <NavDropdown.Item>
-                <Link to="/address">New address</Link>
+                <Link to="/address" className="text-decoration-none text-black">
+                  New address
+                </Link>
               </NavDropdown.Item>
               <NavDropdown.Item>
-                <Link to="/address/province">Province List</Link>
+                <Link
+                  to="/address/province"
+                  className="text-decoration-none text-black"
+                >
+                  Province List
+                </Link>
               </NavDropdown.Item>
               <NavDropdown.Item>
-                <Link to="/address/town">Town List</Link>
+                <Link
+                  to="/address/town"
+                  className="text-decoration-none text-black"
+                >
+                  Town List
+                </Link>
               </NavDropdown.Item>
             </NavDropdown>
             <Nav.Link>
