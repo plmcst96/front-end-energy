@@ -1,11 +1,11 @@
 import { useEffect } from 'react'
 import { Col, Container, ListGroup, Row } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import { getUsers, removeUser } from '../redux/action/users'
+import { getUsers, removeUser, setAdmin, setUser } from '../redux/action/users'
 import { PencilFill, Trash3Fill } from 'react-bootstrap-icons'
 
 const UserElement = () => {
-  const userData = useSelector((state) => state.user.content)
+  const userData = useSelector((state) => state.user.users)
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(getUsers())
@@ -65,7 +65,19 @@ const UserElement = () => {
                       {user.avatar}
                     </Col>
                     <Col sm={1} className="me-5 ps-5">
-                      {user.role} <PencilFill className="ms-3" />
+                      {user.role}{' '}
+                      <PencilFill
+                        className="ms-3"
+                        onClick={() => {
+                          dispatch(
+                            user.role === 'USER'
+                              ? setAdmin(user.uuid)
+                              : setUser(user.uuid)
+                          ).then(() => {
+                            dispatch(getUsers())
+                          })
+                        }}
+                      />
                     </Col>
                     <Trash3Fill
                       onClick={() => {

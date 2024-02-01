@@ -1,5 +1,7 @@
 export const GET_USER = 'GET_USER'
 export const DELETE_USER = 'DELETE_USER'
+export const SET_ADMIN = 'SET_ADMIN'
+export const SET_USER = 'SET_USER'
 
 export const token =
   'eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiIyYzJmZjY2Ni02YTlmLTQxMDItOGNlYy00MGUyNTVhMTcyMWUiLCJpYXQiOjE3MDY4MDMyODMsImV4cCI6MTcwNzQwODA4M30.Z5H2gFFKxox9x2_CYGkkNrPa9Awz5zY-_Vtomu-uV06JyCcDOThqQkc36BmTPlKM'
@@ -47,6 +49,58 @@ export const removeUser = (id) => {
         })
       } else {
         throw new Error("Errore nell'eliminazione dell'utente")
+      }
+    } catch (error) {
+      console.log('Error', error)
+    }
+  }
+}
+
+// "/{uuid}/set-admin"
+export const setAdmin = (id) => {
+  return async (dispatch) => {
+    try {
+      const response = await fetch(
+        'http://localhost:3001/users/' + id + '/set-admin',
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      if (response.ok) {
+        dispatch({
+          type: SET_ADMIN,
+          payload: id,
+        })
+      } else {
+        throw new Error("Error nel settare l'admin")
+      }
+    } catch (error) {
+      console.log('Error', error)
+    }
+  }
+}
+
+// /{uuid}/set-user
+export const setUser = (id) => {
+  return async (dispatch) => {
+    try {
+      const response = await fetch(
+        'http://localhost:3001/users/' + id + '/set-user',
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      if (response.ok) {
+        dispatch({
+          type: SET_USER,
+          payload: id,
+        })
+      } else {
+        throw new Error('Error nel settare lo user')
       }
     } catch (error) {
       console.log('Error', error)
