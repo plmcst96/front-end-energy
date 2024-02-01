@@ -5,6 +5,7 @@ import provinceReducer from '../reducers/province'
 import townReducer from '../reducers/town'
 import clientReducer from '../reducers/client'
 import userReducers from '../reducers/user'
+import invoiceReducer from '../reducers/invoice'
 
 const bigReducer = combineReducers({
   register: registerReducer,
@@ -13,6 +14,7 @@ const bigReducer = combineReducers({
   town: townReducer,
   client: clientReducer,
   user: userReducers,
+  invoice: invoiceReducer,
 })
 
 const store = configureStore({

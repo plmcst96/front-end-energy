@@ -12,6 +12,7 @@ import Registration from './components/Registration'
 import AddressPage from './components/AddressPage'
 import ClientProfile from './components/ClientProfile'
 import UserPage from './components/UserPage'
+import Invoice from './components/Invoice'
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route path="/address" element={<AddressPage />} />
           <Route path="/clients/:uuid" element={<ClientProfile />} />
           <Route path="/user" element={<UserPage />} />
+          <Route path="/invoice" element={<Invoice />} />
         </Routes>
       </Container>
     </BrowserRouter>
