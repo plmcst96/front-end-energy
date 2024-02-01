@@ -4,7 +4,7 @@ export const ADD_CLIENT = "ADD_CLIENT";
 export const GET_SINGLE_CLIENT = "GET_SINGLE_CLIENT";
 
 export const token =
-  "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJlMmViZGU2Yy04MWM0LTQ1ZjgtODkxZS0xYjE5NGQxM2UyM2EiLCJpYXQiOjE3MDY3MTYwMjgsImV4cCI6MTcwNzMyMDgyOH0.Y8VWhKjko3chxjiHuhtX0DrKgWvCxvlPa683QqM7-ImF7WsAHYyVogTEZOnNAoPb";
+  "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiNmM0MDgwNy03MTZmLTRiYzEtYTRlMC1mNDg2MDU0OTAyNjEiLCJpYXQiOjE3MDY3OTgzNjgsImV4cCI6MTcwNzQwMzE2OH0.YUiNjyQnSNZE63ZAf1h2cUWWEMGT8FDe-gsn41Av7e4";
 export const getAllCLients = () => {
   return async (dispatch) => {
     try {
