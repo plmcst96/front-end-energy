@@ -15,16 +15,16 @@ const TownElement = () => {
     <Container>
       <Row className="flex-column">
         <Col className="d-flex justify-content-evenly">
-          <div>
+          <div className="me-5 ps-4">
             <h3>Denominazione in Italiano</h3>
           </div>
-          <div>
+          <div className="me-5 ps-4">
             <h3>Progressivo del Comune</h3>
           </div>
-          <div>
+          <div className="me-5 ps-4">
             <h3>Provincia</h3>
           </div>
-          <div>
+          <div className="me-5 ps-4">
             <h3>Codice Provincia</h3>
           </div>
         </Col>
@@ -37,10 +37,18 @@ const TownElement = () => {
                     key={index}
                     className="d-flex justify-content-evenly"
                   >
-                    <div className="me-5">{townItem.name}</div>
-                    <div className="mx-5">{townItem.municipalSerialNumber}</div>
-                    <div className="ms-5">{townItem.province.name}</div>
-                    <div className="ms-5">{townItem.provinceCode}</div>
+                    <Col sm={3} className="me-5 ps-4">
+                      {townItem.name}
+                    </Col>
+                    <Col sm={1} className="mx-5 ps-4">
+                      {townItem.municipalSerialNumber}
+                    </Col>
+                    <Col sm={1} className="ms-5 ps-4">
+                      {townItem.province.name}
+                    </Col>
+                    <Col sm={1} className="ms-5 ps-4">
+                      {townItem.provinceCode}
+                    </Col>
                   </ListGroup.Item>
                 )
               })}

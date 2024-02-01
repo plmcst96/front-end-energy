@@ -14,7 +14,7 @@ const Town = () => {
           {/* <Pagination /> */}
         </Col>
         <Col>
-          <Link to="/">
+          <Link to="/address">
             <Button variant="dark" className="mt-5">
               Indietro
             </Button>

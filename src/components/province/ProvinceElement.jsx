@@ -15,14 +15,14 @@ const ProvinceElement = () => {
   return (
     <Container fluid>
       <Row className="flex-column">
-        <Col className="d-flex justify-content-evenly">
-          <div>
+        <Col className="d-flex justify-content-around">
+          <div className="me-5 ps-5">
             <h3>Sigla</h3>
           </div>
-          <div>
+          <div className="me-5 ps-5">
             <h3>Provincia</h3>
           </div>
-          <div>
+          <div className="me-5 ps-5">
             <h3>Regione</h3>
           </div>
         </Col>
@@ -35,9 +35,15 @@ const ProvinceElement = () => {
                     key={index}
                     className="d-flex justify-content-evenly"
                   >
-                    <div className="me-5">{provinceItem.provinceCode}</div>
-                    <div className="mx-5">{provinceItem.name}</div>
-                    <div className="ms-5">{provinceItem.region}</div>
+                    <Col sm={3} className="me-5 ps-5">
+                      {provinceItem.provinceCode}
+                    </Col>
+                    <Col sm={3} className="me-5 ps-5">
+                      {provinceItem.name}
+                    </Col>
+                    <Col sm={3} className="me-5 ps-5">
+                      {provinceItem.region}
+                    </Col>
                   </ListGroup.Item>
                 )
               })}
