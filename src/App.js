@@ -11,6 +11,7 @@ import Login from './components/Login'
 import Registration from './components/Registration'
 import AddressPage from './components/AddressPage'
 import ClientProfile from './components/ClientProfile'
+import Invoice from './components/Invoice'
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/address" element={<AddressPage />} />
           <Route path="/clients/:uuid" element={<ClientProfile />} />
+          <Route path="/invoice" element={<Invoice />} />
         </Routes>
       </Container>
     </BrowserRouter>
