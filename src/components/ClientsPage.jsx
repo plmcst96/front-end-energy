@@ -236,6 +236,8 @@ const ClientsPage = () => {
                 Add client
               </Button>
             </div>
+            <div>Filtra per: </div>
+            <div>Fatturato Annuale</div>
           </div>
         </Col>
         <Col className="p-0 mt-4" xs={12} md={10}>
@@ -245,6 +247,30 @@ const ClientsPage = () => {
             </div>
             <Row className="p-0">
               <Row className="p-0">
+                <Row className=" ms-1 px-4 mb-3">
+                  <Col>
+                    <Row className="rounded g-2 py-1 ">
+                      {/* <Col className="p-0 text-center">Client Number</Col> */}
+                      <Col className="p-0 text-center mt-4 ms-1 fw-bold">
+                        Business name
+                      </Col>
+                      <Col className="text-center mt-4 fw-bold">Email</Col>
+                      <Col className="p-0 text-center mt-4 fw-bold">
+                        Telephone contact number
+                      </Col>
+                      <Col className="p-0 text-center mt-4 fw-bold">
+                        VAT Number
+                      </Col>
+                      <Col className="p-0 text-center mt-4 fw-bold">
+                        Input Date
+                      </Col>
+                      <Col className="cursor">
+                        <div className="d-flex justify-content-center"></div>
+                      </Col>
+                    </Row>
+                  </Col>
+                </Row>
+
                 {clientsData &&
                   clientsData
                     .filter((client) =>

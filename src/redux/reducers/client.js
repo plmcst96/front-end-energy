@@ -1,6 +1,12 @@
-import { GET_CLIENTS, REMOVE_CLIENT } from "../action/clients";
+import {
+  GET_CLIENTS,
+  GET_SINGLE_CLIENT,
+  REMOVE_CLIENT,
+} from "../action/clients";
+
 const initialState = {
   clients: [],
+  singleClient: null,
 };
 
 const clientReducer = (state = initialState, action) => {
@@ -17,6 +23,11 @@ const clientReducer = (state = initialState, action) => {
           //   (client, index) => index !== action.payload
           (client) => client.uuid !== action.payload
         ),
+      };
+    case GET_SINGLE_CLIENT:
+      return {
+        ...state,
+        singleClient: action.payload,
       };
 
     default:
