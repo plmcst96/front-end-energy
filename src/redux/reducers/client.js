@@ -1,5 +1,6 @@
 import {
   GET_CLIENTS,
+  GET_CLIENTS_WITH_FILTER,
   GET_SINGLE_CLIENT,
   REMOVE_CLIENT,
 } from "../action/clients";
@@ -7,6 +8,7 @@ import {
 const initialState = {
   clients: [],
   singleClient: null,
+  clientsFiltered: [],
 };
 
 const clientReducer = (state = initialState, action) => {
@@ -28,6 +30,11 @@ const clientReducer = (state = initialState, action) => {
       return {
         ...state,
         singleClient: action.payload,
+      };
+    case GET_CLIENTS_WITH_FILTER:
+      return {
+        ...state,
+        clientsFiltered: action.payload,
       };
 
     default:

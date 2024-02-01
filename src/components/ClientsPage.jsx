@@ -2,21 +2,35 @@ import { Button, Col, Container, Form, Modal, Row } from "react-bootstrap";
 import SingleClient from "./SingleClient";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllCLients, addClient } from "../redux/action/clients";
+import {
+  getAllCLients,
+  addClient,
+  getAllCLientsWithFilter,
+} from "../redux/action/clients";
 
 const ClientsPage = () => {
-  const [show, setShow] = useState(false);
   const dispatch = useDispatch();
+
+  const [show, setShow] = useState(false);
+  const [filterDate, setFilterDate] = useState("");
+  const [newClient, setNewClient] = useState(null);
+  const clientsData = useSelector((state) => state.client.clients.content);
+  const [searchClientInput, setSearchClientInput] = useState("");
+  const [filtersClients, setFiltersClients] = useState({
+    minAmount: 0,
+    maxAmount: 10000,
+  });
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const clientsData = useSelector((state) => state.client.clients.content);
-  const [newClient, setNewClient] = useState(null);
   useEffect(() => {
     dispatch(getAllCLients());
   }, [dispatch]);
 
-  const [searchClientInput, setSearchClientInput] = useState("");
+  useEffect(() => {
+    dispatch(getAllCLientsWithFilter(filtersClients));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filtersClients]);
 
   return (
     <Container fluid>
@@ -236,8 +250,43 @@ const ClientsPage = () => {
                 Add client
               </Button>
             </div>
-            <div>Filtra per: </div>
-            <div>Fatturato Annuale</div>
+          </div>
+        </Col>
+        <Col md={8}>
+          <div className="d-flex ">
+            <Form className="d-flex flex-column flex-grow-1 border border-secondary rounded p-5 mt-2">
+              <div>Filtra per: </div>
+              <Form.Label>Min revenue</Form.Label>
+              <Form.Control
+                onChange={(e) => {
+                  setFiltersClients({
+                    ...filtersClients,
+                    minAmount: e.target.value,
+                  });
+                }}
+              />
+              <Form.Label>Max revenue</Form.Label>
+              <Form.Control
+                onChange={(e) => {
+                  setFiltersClients({
+                    ...filtersClients,
+                    maxAmount: e.target.value,
+                  });
+                }}
+              />
+
+              <Form.Group className="mb-3">
+                <Form.Label>Input date</Form.Label>
+                <Form.Control
+                  type="date"
+                  onChange={(e) => {
+                    setFilterDate(e.target.value);
+                  }}
+                />
+                <Form.Label>Last contact date</Form.Label>
+                <Form.Control type="date" />
+              </Form.Group>
+            </Form>
           </div>
         </Col>
         <Col className="p-0 mt-4" xs={12} md={10}>

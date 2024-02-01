@@ -2,9 +2,10 @@ export const GET_CLIENTS = "GET_CLIENTS";
 export const REMOVE_CLIENT = "REMOVE_CLIENT";
 export const ADD_CLIENT = "ADD_CLIENT";
 export const GET_SINGLE_CLIENT = "GET_SINGLE_CLIENT";
+export const GET_CLIENTS_WITH_FILTER = "GET_CLIENTS_WITH_FILTER";
 
 export const token =
-  "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiNmM0MDgwNy03MTZmLTRiYzEtYTRlMC1mNDg2MDU0OTAyNjEiLCJpYXQiOjE3MDY3OTgzNjgsImV4cCI6MTcwNzQwMzE2OH0.YUiNjyQnSNZE63ZAf1h2cUWWEMGT8FDe-gsn41Av7e4";
+  "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiI4YzdiZjYyZS05ZjYyLTRkM2ItYTBiNi03MzllZjI2MWQ4NjciLCJpYXQiOjE3MDY4MDU5OTAsImV4cCI6MTcwNzQxMDc5MH0.e5ofznJnxrjLFDLng29KFa2jmKW6SjGjpLYdoxuFc_BuGYIagaP70qQg12qXNVYW";
 export const getAllCLients = () => {
   return async (dispatch) => {
     try {
@@ -91,6 +92,36 @@ export const getSingleClient = (uuid) => {
         console.log("sono nella fetch");
         dispatch({
           type: GET_SINGLE_CLIENT,
+          payload: data,
+        });
+      } else {
+        throw new Error("Something went wrong.");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const getAllCLientsWithFilter = (filtersClients) => {
+  const minAmount = filtersClients.minAmount;
+  console.log(minAmount);
+  const maxAmount = filtersClients.maxAmount;
+  return async (dispatch) => {
+    try {
+      const res = await fetch(
+        "http://localhost:3001/clients?minAmount=" + minAmount,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      if (res.ok) {
+        const data = await res.json();
+        console.log(data);
+        dispatch({
+          type: GET_CLIENTS_WITH_FILTER,
           payload: data,
         });
       } else {
