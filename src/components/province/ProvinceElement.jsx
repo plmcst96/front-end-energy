@@ -1,17 +1,10 @@
 import { Container, Row, Col, ListGroup } from 'react-bootstrap'
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getProvince } from '../../redux/action'
 
 const ProvinceElement = () => {
   const provinceData = useSelector((state) => state.province.content)
-  const [province, setProvince] = useState([
-    {
-      provinceCode: '',
-      name: '',
-      region: '',
-    },
-  ])
 
   const dispatch = useDispatch()
 
