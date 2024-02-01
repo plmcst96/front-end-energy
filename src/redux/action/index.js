@@ -2,9 +2,10 @@ export const POST_REGISTER = "POST_REGISTER";
 export const POST_LOGIN = "POST_LOGIN";
 export const POST_ADDRESS = "POST_ADDRESS";
 export const GET_ADDRESS = "GET_ADDRESS";
+export const DELETE_ADDRESS = "DELETE_ADDRESS";
 
-export const APIKEY =
-    "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI3YTM5NTBkOS03YTAzLTQ5MWYtYjUwYS1lNDZhZWFkZjQxYzgiLCJpYXQiOjE3MDY3MDk3NjcsImV4cCI6MTcwNzMxNDU2N30.pW8i8TbnNG4juzFST-V_d00LeeP3CrOdxehVsldShUY";
+export const token =
+    "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzMGM5ZDIwNy0xOTE2L…cwNn0.K0ZyBD4qo7lBJUcgT69b0CnHWlsw9NKnU4yBPBvYjx0";
 
 export const postRegister = (register) => {
     return async (dispatch) => {
@@ -68,7 +69,7 @@ export const postAddress = (address) => {
                 method: "POST",
                 body: JSON.stringify(address),
                 headers: {
-                    Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjNWY0M2NhZC1iMGMyLTRjNTQtYWE2YS1jYjA4ZWRiYzAzODIiLCJpYXQiOjE3MDY3NzY3NTcsImV4cCI6MTcwNzM4MTU1N30.MEZ-JhQxG6n3zrrDSZ5YmDJL1BW0YXjBO1lsMc3mltc",
+                    Authorization: `Bearer ${token}`,
                     "Content-Type": "application/json",
                 },
             })
@@ -97,7 +98,7 @@ export const getAddress = () => {
             const res = await fetch("http://localhost:3001/api/addresses", {
                 method: "GET",
                 headers: {
-                    Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjNWY0M2NhZC1iMGMyLTRjNTQtYWE2YS1jYjA4ZWRiYzAzODIiLCJpYXQiOjE3MDY3NzY3NTcsImV4cCI6MTcwNzM4MTU1N30.MEZ-JhQxG6n3zrrDSZ5YmDJL1BW0YXjBO1lsMc3mltc",
+                    Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzMGM5ZDIwNy0xOTE2L…cwNn0.K0ZyBD4qo7lBJUcgT69b0CnHWlsw9NKnU4yBPBvYjx0`,
                 },
             })
             if (res.ok) {
@@ -118,3 +119,26 @@ export const getAddress = () => {
         }
     }
 }
+
+export const removeAddress = (id) => {
+    return async (dispatch) => {
+        try {
+            const res = await fetch("http://localhost:3001/api/addresses/" + id, {
+                method: "DELETE",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            if (res.ok) {
+                dispatch({
+                    type: DELETE_ADDRESS,
+                    payload: id,
+                });
+            } else {
+                throw new Error("Something went wrong.");
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
+};

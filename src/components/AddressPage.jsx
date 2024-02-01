@@ -17,7 +17,7 @@ const AddressPage = () => {
 
   useEffect(() => {
     dispatch(getAddress())
-  }, [])
+  }, [dispatch])
 
   return (
     <Container fluid className="mt-5">
