@@ -1,4 +1,4 @@
-import { GET_ADDRESS, POST_ADDRESS } from "../action"
+import { DELETE_ADDRESS, GET_ADDRESS, POST_ADDRESS } from "../action"
 
 const initialState = {
     content: null,
@@ -16,6 +16,13 @@ const addressReduces = (state = initialState, action) => {
                 ...state,
                 list: action.payload
             }
+        case DELETE_ADDRESS:
+            return {
+                ...state,
+                list: state.list.filter(
+                    (add) => add.uuid !== action.payload
+                ),
+            };
         default:
             return state
     }

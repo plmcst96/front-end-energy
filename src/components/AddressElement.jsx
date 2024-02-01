@@ -1,15 +1,41 @@
 import { Col, ListGroupItem, Row } from "react-bootstrap"
+import { Trash3Fill } from "react-bootstrap-icons"
+import { useDispatch } from "react-redux"
+import { removeClient } from "../redux/action/clients"
+import { getAddress, removeAddress } from "../redux/action"
 
 const AddressElement = ({ address }) => {
+  const dispatch = useDispatch()
   return (
     <>
-      <ListGroupItem>
-        <Row>
-          <Col sm={3}>{address.street}</Col>
-          <Col sm={2}>{address.streetNumber}</Col>
-          <Col sm={3}>{address.district}</Col>
-          <Col sm={2}>{address.zipCode}</Col>
-          <Col sm={2}>{address.town.name}</Col>
+      <ListGroupItem className="p-0 py-2">
+        <Row className="d-flex justify-content-center">
+          <Col sm={2} className="text-center">
+            {address.street}
+          </Col>
+          <Col sm={2} className="text-center">
+            {address.streetNumber}
+          </Col>
+          <Col sm={2} className="text-center">
+            {address.district}
+          </Col>
+          <Col sm={2} className="text-center">
+            {address.zipCode}
+          </Col>
+          <Col sm={2} className="text-center">
+            {address.town.name}
+          </Col>
+          <Col className="cursor text-center">
+            <div>
+              <Trash3Fill
+                onClick={() => {
+                  dispatch(removeAddress(address.uuid)).then(() => {
+                    dispatch(getAddress())
+                  })
+                }}
+              />
+            </div>
+          </Col>
         </Row>
       </ListGroupItem>
     </>
