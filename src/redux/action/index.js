@@ -5,7 +5,7 @@ export const GET_ADDRESS = "GET_ADDRESS";
 export const DELETE_ADDRESS = "DELETE_ADDRESS";
 
 export const token =
-    "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzMGM5ZDIwNy0xOTE2L…cwNn0.K0ZyBD4qo7lBJUcgT69b0CnHWlsw9NKnU4yBPBvYjx0";
+    "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiNmM0MDgwNy03MTZmLTRiYzEtYTRlMC1mNDg2MDU0OTAyNjEiLCJpYXQiOjE3MDY3OTgzNjgsImV4cCI6MTcwNzQwMzE2OH0.YUiNjyQnSNZE63ZAf1h2cUWWEMGT8FDe-gsn41Av7e4";
 
 export const postRegister = (register) => {
     return async (dispatch) => {
@@ -98,7 +98,7 @@ export const getAddress = () => {
             const res = await fetch("http://localhost:3001/api/addresses", {
                 method: "GET",
                 headers: {
-                    Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzMGM5ZDIwNy0xOTE2L…cwNn0.K0ZyBD4qo7lBJUcgT69b0CnHWlsw9NKnU4yBPBvYjx0`,
+                    Authorization: `Bearer ${token}`,
                 },
             })
             if (res.ok) {
