@@ -1,15 +1,23 @@
-import { POST_ADDRESS } from "../action"
+import { GET_ADDRESS, POST_ADDRESS } from "../action"
 
-const inizialState ={
-    content : null
+const initialState = {
+    content: null,
+    list: []
 }
- const addressReduces = (state=inizialState, action) => {
+const addressReduces = (state = initialState, action) => {
     switch (action.type) {
-        case POST_ADDRESS :
-            return {...state,
-            content:action.payload}
-            default :
-             return state
+        case POST_ADDRESS:
+            return {
+                ...state,
+                content: action.payload
+            }
+        case GET_ADDRESS:
+            return {
+                ...state,
+                list: action.payload
+            }
+        default:
+            return state
     }
- }
- export default addressReduces
+}
+export default addressReduces

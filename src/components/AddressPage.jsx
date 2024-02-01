@@ -1,9 +1,11 @@
-import React, { useState } from "react"
-import { Container, Row, Col, Button, Form } from "react-bootstrap"
-import { useDispatch } from "react-redux"
-import { postAddress } from "../redux/action"
+import React, { useEffect, useState } from "react"
+import { Container, Row, Col, Button, Form, ListGroup } from "react-bootstrap"
+import { useDispatch, useSelector } from "react-redux"
+import { getAddress, postAddress } from "../redux/action"
+import AddressElement from "./AddressElement"
 
 const AddressPage = () => {
+  const addressData = useSelector((state) => state.address.list)
   const [address, setAddress] = useState({
     street: "",
     streetNumber: "",
@@ -12,6 +14,11 @@ const AddressPage = () => {
     nameTown: "",
   })
   const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getAddress())
+  }, [dispatch])
+
   return (
     <Container fluid>
       <Row className=" ms-1 px-4 mb-3">
@@ -105,6 +112,16 @@ const AddressPage = () => {
               </Button>
             </Form>
           </Row>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <ListGroup>
+            {addressData &&
+              addressData.map((add) => (
+                <AddressElement key={add.uuid} address={add} />
+              ))}
+          </ListGroup>
         </Col>
       </Row>
     </Container>
