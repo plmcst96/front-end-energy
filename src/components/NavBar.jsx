@@ -28,6 +28,11 @@ const NavBar = () => {
 
             <Nav.Link>
               <Link to="/address" className="text-decoration-none text-black">
+                Address
+              </Link>
+            </Nav.Link>
+            <Nav.Link>
+              <Link to="/invoice" className="text-decoration-none text-black">
                 Invoice
               </Link>
             </Nav.Link>

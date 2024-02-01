@@ -67,7 +67,7 @@ export const postAddress = (address) => {
                 method: "POST",
                 body: JSON.stringify(address),
                 headers: {
-                    Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjNWY0M2NhZC1iMGMyLTRjNTQtYWE2YS1jYjA4ZWRiYzAzODIiLCJpYXQiOjE3MDY3MjQ3NzYsImV4cCI6MTcwNzMyOTU3Nn0._JZbc9MoAmcdgGF_kRjGhwrPCeqIoRWGD_8FX3gmSCI",
+                    Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjNWY0M2NhZC1iMGMyLTRjNTQtYWE2YS1jYjA4ZWRiYzAzODIiLCJpYXQiOjE3MDY3NzY3NTcsImV4cCI6MTcwNzM4MTU1N30.MEZ-JhQxG6n3zrrDSZ5YmDJL1BW0YXjBO1lsMc3mltc",
                     "Content-Type": "application/json",
                 },
             })
