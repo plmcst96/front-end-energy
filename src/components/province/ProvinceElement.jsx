@@ -1,34 +1,24 @@
 import { Container, Row, Col, ListGroup } from 'react-bootstrap'
 import { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { getProvince } from '../../redux/action'
 
 const ProvinceElement = () => {
-  const [province, setProvince] = useState([{}])
-  const getProvince = () => {
-    fetch('http://localhost:3001/provinces?page=0&size=30&orderBy=name', {
-      headers: {
-        Authorization:
-          'Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiIyYzJmZjY2Ni02YTlmLTQxMDItOGNlYy00MGUyNTVhMTcyMWUiLCJpYXQiOjE3MDY3MDA1OTcsImV4cCI6MTcwNzMwNTM5N30.SLeqiiCVTUMQZdHnkcdMgLAv1u3Y6LxtAqRO3r9nOeLgfky3IvBKvGujaJ4dFV_3 ',
-      },
-    })
-      .then((response) => {
-        if (response.ok) {
-          return response.json()
-        } else {
-          throw new Error('Errore nel recupero delle province')
-        }
-      })
-      .then((data) => {
-        console.log('Fetch completata, dati recuperati', data)
-        setProvince(data.content)
-      })
-      .catch((error) => {
-        console.log('Error!', error)
-      })
-  }
+  const provinceData = useSelector((state) => state.province.content)
+  const [province, setProvince] = useState([
+    {
+      provinceCode: '',
+      name: '',
+      region: '',
+    },
+  ])
+
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    getProvince()
-  }, [])
+    dispatch(getProvince())
+  }, [dispatch])
+
   return (
     <Container fluid>
       <Row className="flex-column">
@@ -45,8 +35,8 @@ const ProvinceElement = () => {
         </Col>
         <Col className="d-flex mt-4 justify-content-around">
           <ListGroup className="w-100">
-            {province &&
-              province.map((provinceItem, index) => {
+            {provinceData &&
+              provinceData.map((provinceItem, index) => {
                 return (
                   <ListGroup.Item
                     key={index}
