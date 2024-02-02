@@ -7,7 +7,6 @@ import { useState } from 'react'
 const AddressElement = ({ add, handlePencilClick }) => {
   const dispatch = useDispatch()
 
-  const [updatedAdd, setUpdatedAdd] = useState(null)
   return (
     <>
       <ListGroupItem className="p-0 py-2">

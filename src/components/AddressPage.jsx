@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Container, Row, Col, Button, Form, ListGroup } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import { getAddress, postAddress } from '../redux/action'
+import { getAddress, postAddress, updateAddress } from '../redux/action'
 import AddressElement from './AddressElement'
 
 const AddressPage = () => {
@@ -13,9 +13,7 @@ const AddressPage = () => {
     zipCode: '',
     nameTown: '',
   })
-
-  const [updateAddress, setUpdateAddress] = useState(null)
-
+  const [updatedAdd, setUpdatedAdd] = useState(null)
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -24,11 +22,10 @@ const AddressPage = () => {
 
   const handlePencilClick = (clickedAddress) => {
     setAddress(clickedAddress)
-
-    dispatch(updateAddress(clickedAddress.uuid)).then(() => {
-      dispatch(getAddress())
-    })
+    setIdAddress(clickedAddress.uuid)
   }
+
+  const [idAddress, setIdAddress] = useState('')
 
   return (
     <Container fluid className="mt-5">
@@ -108,6 +105,7 @@ const AddressPage = () => {
                 <Form.Label>Town</Form.Label>
                 <Form.Control
                   type="text"
+                  // value={address.nameTown ? address.nameTown : ''}
                   onChange={(e) => {
                     setAddress({
                       ...address,
@@ -129,7 +127,10 @@ const AddressPage = () => {
                 type="submit"
                 onClick={(e) => {
                   e.preventDefault()
-                  dispatch(updateAddress(address))
+                  dispatch(updateAddress(idAddress, address)).then(() => {
+                    dispatch(getAddress())
+                  })
+                  console.log(address)
                 }}
               >
                 Update
