@@ -53,6 +53,11 @@ const ClientsPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  useEffect(() => {
+    dispatch(getAddress(filtersClients))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   // useEffect(() => {
   //   dispatch(getAllCLientsWithFilter(filtersClients));
   //   // eslint-disable-next-line react-hooks/exhaustive-deps
