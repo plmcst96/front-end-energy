@@ -36,7 +36,7 @@ const ClientsPage = () => {
   }, [filtersClients]);
 
   useEffect(() => {
-    dispatch(getAddress());
+    dispatch(getAddress(filtersClients));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -386,23 +386,17 @@ const ClientsPage = () => {
                     </Row>
                   </Col>
                 </Row>
-
+                {console.log(clientsData)}
                 {clientsData &&
-                  clientsData
-                    // .filter((client) =>
-                    //   client.businessName
-                    //     .toLowerCase()
-                    //     .includes(searchClientInput.toLowerCase())
-                    // )
-                    .map((client) => {
-                      return (
-                        <SingleClient
-                          client={client}
-                          key={client.uuid}
-                          addressData={addressData}
-                        />
-                      );
-                    })}
+                  clientsData.map((client) => {
+                    return (
+                      <SingleClient
+                        client={client}
+                        key={client.uuid}
+                        addressData={addressData}
+                      />
+                    );
+                  })}
               </Row>
             </Row>
           </div>
@@ -413,3 +407,8 @@ const ClientsPage = () => {
 };
 
 export default ClientsPage;
+// .filter((client) =>
+//   client.businessName
+//     .toLowerCase()
+//     .includes(searchClientInput.toLowerCase())
+// )

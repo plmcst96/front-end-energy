@@ -1,24 +1,30 @@
 import { Button, Col, Form, Modal, Row } from "react-bootstrap";
-import { PencilFill, Trash3Fill } from "react-bootstrap-icons";
+import { EnvelopeAt, PencilFill, Trash3Fill } from "react-bootstrap-icons";
 import { useDispatch } from "react-redux";
 import { removeClient } from "../redux/action/clients";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getAllCLients, editClient } from "../redux/action/clients";
+import { getAllCLients, editClient, sendMail } from "../redux/action/clients";
 import { getAddress } from "../redux/action";
 
 const SingleClient = ({ client, addressData }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
+  const [showEmail, setShowEmail] = useState(false);
   const [editedClient, setEditedClient] = useState(null);
   const [filtersClients, setFiltersClients] = useState({
     minRevenue: 0,
     maxRevenue: 1000000000,
     businessName: "",
   });
+
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const handleCloseEmail = () => setShowEmail(false);
+  const handleShowEmail = () => setShowEmail(true);
+  const [emailContent, setEmailContent] = useState(null);
 
   useEffect(() => {
     dispatch(getAddress());
@@ -26,6 +32,50 @@ const SingleClient = ({ client, addressData }) => {
   }, []);
   return (
     <Row className=" ms-1 px-4 mb-3">
+      {/* MODALE PER INVIARE LA MAIL */}
+      <Modal show={showEmail} onHide={handleCloseEmail}>
+        <Modal.Header closeButton>
+          <Modal.Title>Invia una mail a {client.email}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form.Label>Subject</Form.Label>
+          <Form.Control
+            type="text"
+            onChange={(e) => {
+              setEmailContent({
+                ...emailContent,
+                subject: e.target.value,
+              });
+            }}
+          />
+          <Form.Label>Content</Form.Label>
+          <Form.Control
+            type="text"
+            onChange={(e) => {
+              setEmailContent({
+                ...emailContent,
+                content: e.target.value,
+              });
+            }}
+          />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseEmail}>
+            Close
+          </Button>
+          <Button
+            variant="primary"
+            onClick={() => {
+              handleCloseEmail();
+              dispatch(sendMail(client.uuid, emailContent));
+            }}
+          >
+            Send
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      {/* MODALE PER MODIFICARE IL CLIENTE */}
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Edit client</Modal.Title>
@@ -293,6 +343,12 @@ const SingleClient = ({ client, addressData }) => {
           </Col>
           <Col className="cursor">
             <div className="d-flex justify-content-center gap-3">
+              <EnvelopeAt
+                className="mt-3 fs-5"
+                onClick={() => {
+                  handleShowEmail();
+                }}
+              />
               <PencilFill
                 className="mt-3 fs-5"
                 onClick={() => {
