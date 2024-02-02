@@ -1,7 +1,7 @@
-import { Col, ListGroupItem, Row } from "react-bootstrap"
-import { Trash3Fill } from "react-bootstrap-icons"
-import { useDispatch } from "react-redux"
-import { getAddress, removeAddress } from "../redux/action"
+import { Col, ListGroupItem, Row } from 'react-bootstrap'
+import { PencilFill, Trash3Fill } from 'react-bootstrap-icons'
+import { useDispatch } from 'react-redux'
+import { getAddress, removeAddress, updateAddress } from '../redux/action'
 
 const AddressElement = ({ address }) => {
   const dispatch = useDispatch()
@@ -29,6 +29,14 @@ const AddressElement = ({ address }) => {
               <Trash3Fill
                 onClick={() => {
                   dispatch(removeAddress(address.uuid)).then(() => {
+                    dispatch(getAddress())
+                  })
+                }}
+              />
+              <PencilFill
+                className="ms-3"
+                onClick={() => {
+                  dispatch(updateAddress(address.uuid)).then(() => {
                     dispatch(getAddress())
                   })
                 }}
