@@ -144,7 +144,7 @@ export const getAllCLientsWithFilter = (filtersClients, token) => {
   };
 };
 
-export const editClient = (id, editedClient) => {
+export const editClient = (id, editedClient, token) => {
   return async (dispatch) => {
     try {
       const res = await fetch("http://localhost:3001/clients/" + id, {
@@ -170,7 +170,7 @@ export const editClient = (id, editedClient) => {
   };
 };
 
-export const sendMail = (id, emailContent) => {
+export const sendMail = (id, emailContent, token) => {
   return async (dispatch) => {
     try {
       const res = await fetch("http://localhost:3001/clients/sendmail/" + id, {
