@@ -8,6 +8,7 @@ import {
 const initialState = {
   content: null,
   list: [],
+  updateAdress: '',
 }
 const addressReduces = (state = initialState, action) => {
   switch (action.type) {
@@ -29,7 +30,7 @@ const addressReduces = (state = initialState, action) => {
     case PUT_ADDRESS:
       return {
         ...state,
-        content: action.payload,
+        updateAdress: action.payload,
       }
     default:
       return state

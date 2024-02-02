@@ -198,14 +198,14 @@ export const removeAddress = (id) => {
   }
 }
 
-export const updateAddress = (id, address) => {
+export const updateAddress = (id, updateAddress) => {
   return async (dispatch) => {
     try {
       const response = await fetch(
         'http://localhost:3001/api/addresses/' + id,
         {
           method: 'PUT',
-          body: JSON.stringify(address),
+          body: JSON.stringify(updateAddress),
           headers: {
             Authorization: `Bearer ${token}`,
             'Content-Type': 'application/json',
