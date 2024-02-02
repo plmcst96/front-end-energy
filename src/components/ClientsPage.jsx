@@ -35,6 +35,11 @@ const ClientsPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filtersClients]);
 
+  useEffect(() => {
+    dispatch(getAddress());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   // useEffect(() => {
   //   dispatch(getAllCLientsWithFilter(filtersClients));
   //   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -217,14 +222,11 @@ const ClientsPage = () => {
                     legalAddress: e.target.value,
                   });
                 }}
-                onClick={() => {
-                  dispatch(getAddress());
-                }}
               >
                 <option>Select Address</option>
                 {addressData &&
                   addressData.map((add) => (
-                    <option key={add.uuid}>
+                    <option key={add.uuid} value={add.uuid}>
                       {add.street +
                         " " +
                         add.streetNumber +
@@ -243,17 +245,15 @@ const ClientsPage = () => {
                 onChange={(e) => {
                   setNewClient({
                     ...newClient,
-                    legalAddress: e.target.value,
+                    operativeAddress: e.target.value,
                   });
-                }}
-                onClick={() => {
-                  dispatch(getAddress());
+                  console.log(newClient);
                 }}
               >
                 <option>Select Address</option>
                 {addressData &&
                   addressData.map((add) => (
-                    <option>
+                    <option key={add.uuid} value={add.uuid}>
                       {add.street +
                         " " +
                         add.streetNumber +
