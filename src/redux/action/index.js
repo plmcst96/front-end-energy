@@ -33,8 +33,8 @@ export const postRegister = (register) => {
     } catch (error) {
       console.log(error)
     }
-  };
-};
+  }
+}
 
 export const postRegisterAdmin = (register) => {
   return async (dispatch) => {
