@@ -7,7 +7,7 @@ export const POST_ADDRESS = "POST_ADDRESS";
 export const DELETE_ADDRESS = "DELETE_ADDRESS";
 
 export const token =
-  "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiIxODViN2JlMS04MGE1LTQ0MzQtYWFlZi05YzZhNjlmNWE3MzkiLCJpYXQiOjE3MDY3OTk5OTcsImV4cCI6MTcwNzQwNDc5N30.QhK-sTDtZdzVvAuKz6KNvC4UtB3qmChBpvAwhyG7Go-B9dOlPjbqX2xPCNrQAnaR";
+  "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJlNDAwMjE4OC03OTkwLTQyMDktYTY4Yy0wZGY0YzIyOWRiMTQiLCJpYXQiOjE3MDY4MDg2NDAsImV4cCI6MTcwNzQxMzQ0MH0.eZ44QiO3XIQ_IpyYzibjKF0ymrzlTu5rcVlcWpXxA2HBhADT1bMLILnMa-Bs9Fby";
 
 export const postRegister = (register) => {
   return async (dispatch) => {
