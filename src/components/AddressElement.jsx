@@ -1,11 +1,11 @@
-import { Col, ListGroupItem, Row } from "react-bootstrap"
-import { PencilFill, Trash3Fill } from "react-bootstrap-icons"
-import { useDispatch } from "react-redux"
-import { getAddress, removeAddress, updateAddress } from "../redux/action"
-import { useState } from "react"
+import { Col, ListGroupItem, Row } from "react-bootstrap";
+import { PencilFill, Trash3Fill } from "react-bootstrap-icons";
+import { useDispatch } from "react-redux";
+import { getAddress, removeAddress, updateAddress } from "../redux/action";
+import { useState } from "react";
 
 const AddressElement = ({ add, handlePencilClick, token }) => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   return (
     <>
@@ -31,8 +31,8 @@ const AddressElement = ({ add, handlePencilClick, token }) => {
               <Trash3Fill
                 onClick={() => {
                   dispatch(removeAddress(add.uuid, token)).then(() => {
-                    dispatch(getAddress(token))
-                  })
+                    dispatch(getAddress(token));
+                  });
                 }}
               />
               <PencilFill
@@ -41,7 +41,7 @@ const AddressElement = ({ add, handlePencilClick, token }) => {
                   // dispatch(updateAddress(add.uuid)).then(() => {
                   //   dispatch(getAddress())
                   // })
-                  handlePencilClick(add)
+                  handlePencilClick(add);
                 }}
               />
             </div>
@@ -49,7 +49,7 @@ const AddressElement = ({ add, handlePencilClick, token }) => {
         </Row>
       </ListGroupItem>
     </>
-  )
-}
+  );
+};
 
-export default AddressElement
+export default AddressElement;

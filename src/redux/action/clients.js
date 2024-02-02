@@ -6,7 +6,6 @@ export const GET_CLIENTS_WITH_FILTER = "GET_CLIENTS_WITH_FILTER";
 export const EDIT_CLIENT = "EDIT_CLIENT";
 export const SEND_MAIL = "SEND_MAIL";
 
-
 export const getAllCLients = (filtersClients, token) => {
   const { minRevenue, maxRevenue, businessName } = filtersClients;
   return async (dispatch) => {

@@ -1,34 +1,34 @@
-import React, { useEffect, useState } from "react"
-import { Container, Row, Col, Button, Form, ListGroup } from "react-bootstrap"
-import { useDispatch, useSelector } from "react-redux"
-import { getAddress, postAddress, updateAddress } from "../redux/action"
-import AddressElement from "./AddressElement"
+import React, { useEffect, useState } from "react";
+import { Container, Row, Col, Button, Form, ListGroup } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { getAddress, postAddress, updateAddress } from "../redux/action";
+import AddressElement from "./AddressElement";
 
 const AddressPage = () => {
-  const addressData = useSelector((state) => state.address.list)
+  const addressData = useSelector((state) => state.address.list);
   const [address, setAddress] = useState({
     street: "",
     streetNumber: "",
     district: "",
     zipCode: "",
     nameTown: "",
-  })
-  const [updatedAdd, setUpdatedAdd] = useState(null)
-  const dispatch = useDispatch()
+  });
+  const [updatedAdd, setUpdatedAdd] = useState(null);
+  const dispatch = useDispatch();
 
-  const role = useSelector((state) => state.register.role)
-  const token = useSelector((state) => state.register.token)
+  const role = useSelector((state) => state.register.role);
+  const token = useSelector((state) => state.register.token);
 
   useEffect(() => {
-    dispatch(getAddress(token))
-  }, [dispatch])
+    dispatch(getAddress(token));
+  }, [dispatch]);
 
   const handlePencilClick = (clickedAddress) => {
-    setAddress(clickedAddress)
-    setIdAddress(clickedAddress.uuid)
-  }
+    setAddress(clickedAddress);
+    setIdAddress(clickedAddress.uuid);
+  };
 
-  const [idAddress, setIdAddress] = useState("")
+  const [idAddress, setIdAddress] = useState("");
 
   return (
     <Container fluid className="mt-5">
@@ -49,7 +49,7 @@ const AddressPage = () => {
                     setAddress({
                       ...address,
                       street: e.target.value,
-                    })
+                    });
                   }}
                 />
               </Form.Group>
@@ -65,7 +65,7 @@ const AddressPage = () => {
                     setAddress({
                       ...address,
                       streetNumber: e.target.value,
-                    })
+                    });
                   }}
                 />
               </Form.Group>
@@ -81,7 +81,7 @@ const AddressPage = () => {
                     setAddress({
                       ...address,
                       district: e.target.value,
-                    })
+                    });
                   }}
                 />
               </Form.Group>
@@ -97,7 +97,7 @@ const AddressPage = () => {
                     setAddress({
                       ...address,
                       zipCode: e.target.value,
-                    })
+                    });
                   }}
                 />
               </Form.Group>
@@ -113,15 +113,15 @@ const AddressPage = () => {
                     setAddress({
                       ...address,
                       nameTown: e.target.value,
-                    })
+                    });
                   }}
                 />
               </Form.Group>
               <Button
                 type="submit"
                 onClick={(e) => {
-                  e.preventDefault()
-                  dispatch(postAddress(updateAddress))
+                  e.preventDefault();
+                  dispatch(postAddress(updateAddress));
                 }}
               >
                 Save
@@ -129,11 +129,11 @@ const AddressPage = () => {
               <Button
                 type="submit"
                 onClick={(e) => {
-                  e.preventDefault()
+                  e.preventDefault();
                   dispatch(updateAddress(idAddress, address)).then(() => {
-                    dispatch(getAddress())
-                  })
-                  console.log(address)
+                    dispatch(getAddress());
+                  });
+                  console.log(address);
                 }}
               >
                 Update
@@ -175,7 +175,7 @@ const AddressPage = () => {
         </Col>
       </Row>
     </Container>
-  )
-}
+  );
+};
 
-export default AddressPage
+export default AddressPage;
