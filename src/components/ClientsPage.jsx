@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   getAllCLients,
   addClient,
-  getAllCLientsWithFilter,
+  // getAllCLientsWithFilter,
 } from "../redux/action/clients";
 import { getAddress } from "../redux/action";
 
@@ -15,10 +15,10 @@ const ClientsPage = () => {
   const addressData = useSelector((state) => state.address.list);
 
   const [show, setShow] = useState(false);
-  const [filterDate, setFilterDate] = useState("");
+  // const [filterDate, setFilterDate] = useState("");
   const [newClient, setNewClient] = useState(null);
   const clientsData = useSelector((state) => state.client.clients.content);
-  const [searchClientInput, setSearchClientInput] = useState("");
+  //const [searchClientInput, setSearchClientInput] = useState("");
   const [filtersClients, setFiltersClients] = useState({
     minRevenue: 0,
     maxRevenue: 10000000000,
@@ -34,6 +34,11 @@ const ClientsPage = () => {
     dispatch(getAllCLients(filtersClients));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filtersClients]);
+
+  useEffect(() => {
+    dispatch(getAddress());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // useEffect(() => {
   //   dispatch(getAllCLientsWithFilter(filtersClients));
@@ -217,14 +222,11 @@ const ClientsPage = () => {
                     legalAddress: e.target.value,
                   });
                 }}
-                onClick={() => {
-                  dispatch(getAddress());
-                }}
               >
                 <option>Select Address</option>
                 {addressData &&
                   addressData.map((add) => (
-                    <option key={add.uuid}>
+                    <option key={add.uuid} value={add.uuid}>
                       {add.street +
                         " " +
                         add.streetNumber +
@@ -243,17 +245,15 @@ const ClientsPage = () => {
                 onChange={(e) => {
                   setNewClient({
                     ...newClient,
-                    legalAddress: e.target.value,
+                    operativeAddress: e.target.value,
                   });
-                }}
-                onClick={() => {
-                  dispatch(getAddress());
+                  console.log(newClient);
                 }}
               >
                 <option>Select Address</option>
                 {addressData &&
                   addressData.map((add) => (
-                    <option>
+                    <option key={add.uuid} value={add.uuid}>
                       {add.street +
                         " " +
                         add.streetNumber +
@@ -343,9 +343,9 @@ const ClientsPage = () => {
                 <Form.Label>Input date</Form.Label>
                 <Form.Control
                   type="date"
-                  onChange={(e) => {
-                    setFilterDate(e.target.value);
-                  }}
+                  // onChange={(e) => {
+                  //   setFilterDate(e.target.value);
+                  // }}
                 />
                 <Form.Label>Last contact date</Form.Label>
                 <Form.Control type="date" />
@@ -389,13 +389,19 @@ const ClientsPage = () => {
 
                 {clientsData &&
                   clientsData
-                    .filter((client) =>
-                      client.businessName
-                        .toLowerCase()
-                        .includes(searchClientInput.toLowerCase())
-                    )
+                    // .filter((client) =>
+                    //   client.businessName
+                    //     .toLowerCase()
+                    //     .includes(searchClientInput.toLowerCase())
+                    // )
                     .map((client) => {
-                      return <SingleClient client={client} key={client.uuid} />;
+                      return (
+                        <SingleClient
+                          client={client}
+                          key={client.uuid}
+                          addressData={addressData}
+                        />
+                      );
                     })}
               </Row>
             </Row>

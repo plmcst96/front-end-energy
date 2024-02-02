@@ -3,6 +3,7 @@ export const REMOVE_CLIENT = "REMOVE_CLIENT";
 export const ADD_CLIENT = "ADD_CLIENT";
 export const GET_SINGLE_CLIENT = "GET_SINGLE_CLIENT";
 export const GET_CLIENTS_WITH_FILTER = "GET_CLIENTS_WITH_FILTER";
+export const EDIT_CLIENT = "EDIT_CLIENT";
 
 export const token =
   "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJlNDAwMjE4OC03OTkwLTQyMDktYTY4Yy0wZGY0YzIyOWRiMTQiLCJpYXQiOjE3MDY4MDg2NDAsImV4cCI6MTcwNzQxMzQ0MH0.eZ44QiO3XIQ_IpyYzibjKF0ymrzlTu5rcVlcWpXxA2HBhADT1bMLILnMa-Bs9Fby";
@@ -116,7 +117,6 @@ export const getSingleClient = (uuid) => {
 export const getAllCLientsWithFilter = (filtersClients) => {
   const minAmount = filtersClients.minAmount;
   console.log(minAmount);
-  const maxAmount = filtersClients.maxAmount;
   return async (dispatch) => {
     try {
       const res = await fetch(
@@ -133,6 +133,32 @@ export const getAllCLientsWithFilter = (filtersClients) => {
         dispatch({
           type: GET_CLIENTS_WITH_FILTER,
           payload: data,
+        });
+      } else {
+        throw new Error("Something went wrong.");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const editClient = (id, editedClient) => {
+  return async (dispatch) => {
+    try {
+      const res = await fetch("http://localhost:3001/clients/" + id, {
+        method: "PUT",
+        body: JSON.stringify(editedClient),
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (res.ok) {
+        console.log(editClient);
+        dispatch({
+          type: EDIT_CLIENT,
+          payload: editedClient,
         });
       } else {
         throw new Error("Something went wrong.");
