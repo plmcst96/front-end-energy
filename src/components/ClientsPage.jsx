@@ -12,6 +12,7 @@ import { getAddress } from "../redux/action"
 const ClientsPage = () => {
   const dispatch = useDispatch()
   const tokenStorage = localStorage.getItem("token")
+  const role = localStorage.getItem("role")
   const addressData = useSelector((state) => state.address.list)
 
   const [show, setShow] = useState(false)
@@ -35,7 +36,6 @@ const ClientsPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filtersClients])
 
-  const role = useSelector((state) => state.register.role)
   const token = useSelector((state) => state.register.token)
 
   useEffect(() => {
@@ -278,8 +278,8 @@ const ClientsPage = () => {
             variant="primary"
             onClick={() => {
               handleClose()
-              dispatch(addClient(newClient, token)).then(() => {
-                dispatch(getAllCLients(filtersClients, token))
+              dispatch(addClient(newClient, tokenStorage)).then(() => {
+                dispatch(getAllCLients(filtersClients, tokenStorage))
               })
             }}
           >
@@ -315,7 +315,9 @@ const ClientsPage = () => {
                 >
                   Add client
                 </Button>
-              ) : null}
+              ) : (
+                ""
+              )}
             </div>
           </div>
         </Col>
