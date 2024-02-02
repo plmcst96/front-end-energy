@@ -1,4 +1,5 @@
 import {
+  EDIT_CLIENT,
   GET_CLIENTS,
   GET_CLIENTS_WITH_FILTER,
   GET_SINGLE_CLIENT,
@@ -9,6 +10,7 @@ const initialState = {
   clients: [],
   singleClient: null,
   clientsFiltered: [],
+  editedClient: null,
 };
 
 const clientReducer = (state = initialState, action) => {
@@ -35,6 +37,11 @@ const clientReducer = (state = initialState, action) => {
       return {
         ...state,
         clients: action.payload,
+      };
+    case EDIT_CLIENT:
+      return {
+        ...state,
+        editedClient: action.payload,
       };
 
     default:
