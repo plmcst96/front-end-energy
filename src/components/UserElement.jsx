@@ -1,16 +1,16 @@
-import { useEffect } from 'react'
-import { Col, Container, ListGroup, Row } from 'react-bootstrap'
-import { useDispatch, useSelector } from 'react-redux'
-import { getUsers, removeUser, setAdmin, setUser } from '../redux/action/users'
-import { PencilFill, Trash3Fill } from 'react-bootstrap-icons'
+import { useEffect } from "react";
+import { Col, Container, ListGroup, Row } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { getUsers, removeUser, setAdmin, setUser } from "../redux/action/users";
+import { PencilFill, Trash3Fill } from "react-bootstrap-icons";
 
 const UserElement = () => {
-  const userData = useSelector((state) => state.user.users)
-  const dispatch = useDispatch()
+  const userData = useSelector((state) => state.user.users);
+  const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getUsers())
-  }, [dispatch])
-
+    dispatch(getUsers(token));
+  }, [dispatch]);
+  const token = localStorage.getItem("token");
   return (
     <Container fluid>
       <Row className="flex-column">
@@ -65,35 +65,35 @@ const UserElement = () => {
                       {user.avatar}
                     </Col>
                     <Col sm={1} className="me-5 ps-5">
-                      {user.role}{' '}
+                      {user.role}{" "}
                       <PencilFill
                         className="ms-3"
                         onClick={() => {
                           dispatch(
-                            user.role === 'USER'
-                              ? setAdmin(user.uuid)
-                              : setUser(user.uuid)
+                            user.role === "USER"
+                              ? setAdmin(user.uuid, token)
+                              : setUser(user.uuid, token)
                           ).then(() => {
-                            dispatch(getUsers())
-                          })
+                            dispatch(getUsers(token));
+                          });
                         }}
                       />
                     </Col>
                     <Trash3Fill
                       onClick={() => {
-                        dispatch(removeUser(user.uuid)).then(() => {
-                          dispatch(getUsers())
-                        })
+                        dispatch(removeUser(user.uuid, token)).then(() => {
+                          dispatch(getUsers(token));
+                        });
                       }}
                     />
                   </ListGroup.Item>
-                )
+                );
               })}
           </ListGroup>
         </Col>
       </Row>
     </Container>
-  )
-}
+  );
+};
 
-export default UserElement
+export default UserElement;

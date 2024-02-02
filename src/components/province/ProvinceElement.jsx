@@ -1,16 +1,17 @@
-import { Container, Row, Col, ListGroup } from 'react-bootstrap'
-import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { getProvince } from '../../redux/action'
+import { Container, Row, Col, ListGroup } from "react-bootstrap";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getProvince } from "../../redux/action";
 
 const ProvinceElement = () => {
-  const provinceData = useSelector((state) => state.province.content)
+  const provinceData = useSelector((state) => state.province.content);
+  const token = localStorage.getItem("token");
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getProvince())
-  }, [dispatch])
+    dispatch(getProvince(token));
+  }, [dispatch]);
 
   return (
     <Container fluid>
@@ -45,13 +46,13 @@ const ProvinceElement = () => {
                       {provinceItem.region}
                     </Col>
                   </ListGroup.Item>
-                )
+                );
               })}
           </ListGroup>
         </Col>
       </Row>
     </Container>
-  )
-}
+  );
+};
 
-export default ProvinceElement
+export default ProvinceElement;

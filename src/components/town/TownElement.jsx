@@ -1,15 +1,16 @@
-import { Container, Row, Col, ListGroup } from 'react-bootstrap'
-import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { getTown } from '../../redux/action'
+import { Container, Row, Col, ListGroup } from "react-bootstrap";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getTown } from "../../redux/action";
 
 const TownElement = () => {
-  const townData = useSelector((state) => state.town.content)
-  const dispatch = useDispatch()
+  const townData = useSelector((state) => state.town.content);
+  const dispatch = useDispatch();
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
-    dispatch(getTown())
-  }, [dispatch])
+    dispatch(getTown(token));
+  }, [dispatch]);
 
   return (
     <Container>
@@ -50,13 +51,13 @@ const TownElement = () => {
                       {townItem.provinceCode}
                     </Col>
                   </ListGroup.Item>
-                )
+                );
               })}
           </ListGroup>
         </Col>
       </Row>
     </Container>
-  )
-}
+  );
+};
 
-export default TownElement
+export default TownElement;

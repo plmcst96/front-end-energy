@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react"
-import { Container, Row, Col, Button, Form, ListGroup } from "react-bootstrap"
-import { useDispatch, useSelector } from "react-redux"
-import { getInvoice, postInvoice } from "../redux/action/invoice"
-import InvoiceElement from "./InvoiceElement"
+import { useEffect, useState } from "react";
+import { Container, Row, Col, Button, Form, ListGroup } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { getInvoice, postInvoice } from "../redux/action/invoice";
+import InvoiceElement from "./InvoiceElement";
 
 const Invoice = () => {
   const [invoice, setInvoice] = useState({
@@ -11,17 +11,18 @@ const Invoice = () => {
     number: "",
     invoiceState: "",
     clientId: "",
-  })
+  });
 
-  const role = useSelector((state) => state.register.role)
+  const token = localStorage.getItem("token");
+  const role = localStorage.getItem("role");
+  console.log(role);
+  const invoiceData = useSelector((state) => state.invoice.list);
 
-  const invoiceData = useSelector((state) => state.invoice.list)
-
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getInvoice())
-  }, [dispatch])
+    dispatch(getInvoice(token));
+  }, [dispatch]);
 
   return (
     <Container fluid className="mt-5">
@@ -42,7 +43,7 @@ const Invoice = () => {
                       setInvoice({
                         ...invoice,
                         date: e.target.value,
-                      })
+                      });
                     }}
                   />
                 </Form.Group>
@@ -57,7 +58,7 @@ const Invoice = () => {
                       setInvoice({
                         ...invoice,
                         amount: e.target.value,
-                      })
+                      });
                     }}
                   />
                 </Form.Group>
@@ -72,7 +73,7 @@ const Invoice = () => {
                       setInvoice({
                         ...invoice,
                         number: e.target.value,
-                      })
+                      });
                     }}
                   />
                 </Form.Group>
@@ -87,7 +88,7 @@ const Invoice = () => {
                       setInvoice({
                         ...invoice,
                         invoiceState: e.target.value,
-                      })
+                      });
                     }}
                   >
                     <option>Select State</option>
@@ -119,21 +120,23 @@ const Invoice = () => {
                       setInvoice({
                         ...invoice,
                         clientId: e.target.value,
-                      })
+                      });
                     }}
                   />
                 </Form.Group>
                 <Button
                   type="submit"
                   onClick={(e) => {
-                    e.preventDefault()
-                    dispatch(postInvoice(invoice))
+                    e.preventDefault();
+                    dispatch(postInvoice(invoice, token));
                   }}
                 >
                   Save
                 </Button>
               </Form>
-            ) : null}
+            ) : (
+              ""
+            )}
           </Row>
         </Col>
       </Row>
@@ -166,7 +169,7 @@ const Invoice = () => {
         </Col>
       </Row>
     </Container>
-  )
-}
+  );
+};
 
-export default Invoice
+export default Invoice;

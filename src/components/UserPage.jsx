@@ -1,5 +1,5 @@
-import { Container, Row, Col } from 'react-bootstrap'
-import UserElement from './UserElement'
+import { Container, Row, Col } from "react-bootstrap";
+import UserElement from "./UserElement";
 
 const UserPage = () => {
   return (
@@ -13,7 +13,7 @@ const UserPage = () => {
         </Col>
       </Row>
     </Container>
-  )
-}
+  );
+};
 
-export default UserPage
+export default UserPage;

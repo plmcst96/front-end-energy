@@ -17,7 +17,7 @@ const AddressPage = () => {
   const dispatch = useDispatch()
 
   const role = useSelector((state) => state.register.role)
-  const token = useSelector((state) => state.register.token)
+  const token = localStorage.getItem("token")
 
   useEffect(() => {
     dispatch(getAddress(token))
@@ -121,7 +121,7 @@ const AddressPage = () => {
                 type="submit"
                 onClick={(e) => {
                   e.preventDefault()
-                  dispatch(postAddress(updateAddress))
+                  dispatch(postAddress(updateAddress, token))
                 }}
               >
                 Save
@@ -130,9 +130,11 @@ const AddressPage = () => {
                 type="submit"
                 onClick={(e) => {
                   e.preventDefault()
-                  dispatch(updateAddress(idAddress, address)).then(() => {
-                    dispatch(getAddress())
-                  })
+                  dispatch(updateAddress(idAddress, address, token)).then(
+                    () => {
+                      dispatch(getAddress(token))
+                    }
+                  )
                   console.log(address)
                 }}
               >
