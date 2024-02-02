@@ -3,6 +3,7 @@ import { POST_LOGIN, POST_REGISTER } from "../action";
 const initialState = {
   content: null,
   token: "",
+  role: ""
 };
 
 const registerReducer = (state = initialState, action) => {
@@ -15,8 +16,10 @@ const registerReducer = (state = initialState, action) => {
     case POST_LOGIN:
       return {
         ...state,
-        token: action.payload,
+        token: action.payload.token,
+        role: action.payload.role
       }
+
     default:
       return state;
   }

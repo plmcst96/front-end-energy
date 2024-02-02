@@ -1,8 +1,10 @@
+import { GET_ROLE } from '../action'
 import { DELETE_USER, GET_USER, SET_ADMIN, SET_USER } from '../action/users'
 
 const initialState = {
   content: null,
   users: [],
+
 }
 
 const userReducers = (state = initialState, action) => {
@@ -29,6 +31,7 @@ const userReducers = (state = initialState, action) => {
         content: action.payload,
       }
     }
+
     default:
       return state
   }

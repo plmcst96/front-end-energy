@@ -13,6 +13,7 @@ import AddressPage from './components/AddressPage'
 import ClientProfile from './components/ClientProfile'
 import UserPage from './components/UserPage'
 import Invoice from './components/Invoice'
+import RegistrationAdmin from './components/RegisterAdmin'
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/clients" element={<ClientsPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Registration />} />
+          <Route path="/register/admin" element={<RegistrationAdmin />} />
           <Route path="/" element={<HomePage />} />
           <Route path="/address" element={<AddressPage />} />
           <Route path="/clients/:uuid" element={<ClientProfile />} />

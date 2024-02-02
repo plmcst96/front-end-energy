@@ -5,7 +5,7 @@ export const GET_SINGLE_CLIENT = "GET_SINGLE_CLIENT";
 export const GET_CLIENTS_WITH_FILTER = "GET_CLIENTS_WITH_FILTER";
 
 export const token =
-  "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJlNDAwMjE4OC03OTkwLTQyMDktYTY4Yy0wZGY0YzIyOWRiMTQiLCJpYXQiOjE3MDY4MDg2NDAsImV4cCI6MTcwNzQxMzQ0MH0.eZ44QiO3XIQ_IpyYzibjKF0ymrzlTu5rcVlcWpXxA2HBhADT1bMLILnMa-Bs9Fby";
+  "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI5N2FkZDhhMy00MmNjLTQxYjMtOGFmMS0wNzQ1OWMxNzkyYTEiLCJpYXQiOjE3MDY4NzA3MjAsImV4cCI6MTcwNzQ3NTUyMH0.zsGKdyBgbule-ZxgYiZBXsmXelq6gHSoSaTXywhJ-Zk";
 export const getAllCLients = (filtersClients) => {
   const { minRevenue, maxRevenue, businessName } = filtersClients;
   return async (dispatch) => {

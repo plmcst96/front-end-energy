@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react"
 import { Button, Col, Container, Form, Row } from "react-bootstrap"
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 import { Link } from "react-router-dom"
-import { postRegister } from "../redux/action"
+import { postRegister, postRegisterAdmin } from "../redux/action"
 
-const Registration = () => {
+const RegistrationAdmin = () => {
   const [register, setRegister] = useState({
     name: "",
     surname: "",
@@ -97,7 +97,7 @@ const Registration = () => {
                   type="submit"
                   onClick={(e) => {
                     e.preventDefault()
-                    dispatch(postRegister(register))
+                    dispatch(postRegisterAdmin(register))
                   }}
                 >
                   <Link to="/login" className="nav-link">
@@ -112,4 +112,4 @@ const Registration = () => {
     </Container>
   )
 }
-export default Registration
+export default RegistrationAdmin

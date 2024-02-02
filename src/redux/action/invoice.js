@@ -3,7 +3,7 @@ export const GET_INVOICE = "GET_INVOICE"
 export const DELETE_INVOICE = "DELETE_INVOICE"
 
 export const token =
-    "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjNWY0M2NhZC1iMGMyLTRjNTQtYWE2YS1jYjA4ZWRiYzAzODIiLCJpYXQiOjE3MDY4MTI4ODAsImV4cCI6MTcwNzQxNzY4MH0.3pquCssLsOtsPKgcJksbWyh3X-UDbaxJpx1oV2ksi5M";
+    "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI5N2FkZDhhMy00MmNjLTQxYjMtOGFmMS0wNzQ1OWMxNzkyYTEiLCJpYXQiOjE3MDY4NzA3MjAsImV4cCI6MTcwNzQ3NTUyMH0.zsGKdyBgbule-ZxgYiZBXsmXelq6gHSoSaTXywhJ-Zk";
 
 export const postInvoice = (invoice) => {
     return async (dispatch) => {

@@ -1,8 +1,14 @@
 import { Container, Image, Nav, NavDropdown, Navbar } from "react-bootstrap"
 import { Link } from "react-router-dom"
 import logo from "../logo.png"
+import { useSelector } from "react-redux"
 
 const NavBar = () => {
+  const userData = useSelector((state) => state.user.users)
+
+  const isAdmin = userData && userData.role === "ADMIN"
+  console.log(userData.role)
+
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
@@ -53,11 +59,13 @@ const NavBar = () => {
                 Invoice
               </Link>
             </Nav.Link>
+
             <Nav.Link>
               <Link to="/user" className="text-decoration-none text-black">
                 User
               </Link>
             </Nav.Link>
+
             <Nav.Link>
               <Link
                 to="/login"

@@ -6,8 +6,10 @@ export const POST_LOGIN = "POST_LOGIN";
 export const POST_ADDRESS = "POST_ADDRESS";
 export const DELETE_ADDRESS = "DELETE_ADDRESS";
 
+
 export const token =
-  "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJlNDAwMjE4OC03OTkwLTQyMDktYTY4Yy0wZGY0YzIyOWRiMTQiLCJpYXQiOjE3MDY4MDg2NDAsImV4cCI6MTcwNzQxMzQ0MH0.eZ44QiO3XIQ_IpyYzibjKF0ymrzlTu5rcVlcWpXxA2HBhADT1bMLILnMa-Bs9Fby";
+  "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI5N2FkZDhhMy00MmNjLTQxYjMtOGFmMS0wNzQ1OWMxNzkyYTEiLCJpYXQiOjE3MDY4NzA3MjAsImV4cCI6MTcwNzQ3NTUyMH0.zsGKdyBgbule-ZxgYiZBXsmXelq6gHSoSaTXywhJ-Zk";
+
 
 export const postRegister = (register) => {
   return async (dispatch) => {
@@ -36,6 +38,33 @@ export const postRegister = (register) => {
   };
 };
 
+export const postRegisterAdmin = (register) => {
+  return async (dispatch) => {
+    try {
+      const res = await fetch("http://localhost:3001/auth/register/admin", {
+        method: "POST",
+        body: JSON.stringify(register),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      if (res.ok) {
+        const data = await res.json();
+        console.log(data);
+        dispatch({
+          type: POST_REGISTER,
+          payload: data.content,
+        });
+        alert("Registrazione effettuato con successo!");
+      } else {
+        throw new Error("The login is fail!");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
 export const postLogin = (login) => {
   return async (dispatch) => {
     try {
@@ -51,9 +80,10 @@ export const postLogin = (login) => {
         console.log(data);
         dispatch({
           type: POST_LOGIN,
-          payload: data,
+          payload: { token: data.token, role: data.role },
         });
         localStorage.setItem("token", data.token);
+        localStorage.setItem("role", data.role);
 
         alert("Login effettuato con successo!");
       } else {
@@ -64,6 +94,7 @@ export const postLogin = (login) => {
     }
   };
 };
+
 export const postAddress = (address) => {
   return async (dispatch) => {
     try {
