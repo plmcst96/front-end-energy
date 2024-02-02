@@ -15,10 +15,10 @@ const ClientsPage = () => {
   const addressData = useSelector((state) => state.address.list)
 
   const [show, setShow] = useState(false)
-  const [filterDate, setFilterDate] = useState("")
+  // const [filterDate, setFilterDate] = useState("");
   const [newClient, setNewClient] = useState(null)
   const clientsData = useSelector((state) => state.client.clients.content)
-  const [searchClientInput, setSearchClientInput] = useState("")
+  //const [searchClientInput, setSearchClientInput] = useState("");
   const [filtersClients, setFiltersClients] = useState({
     minRevenue: 0,
     maxRevenue: 10000000000,
@@ -37,6 +37,11 @@ const ClientsPage = () => {
 
   const role = useSelector((state) => state.register.role)
   const token = useSelector((state) => state.register.token)
+
+  useEffect(() => {
+    dispatch(getAddress(filtersClients))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   useEffect(() => {
     dispatch(getAddress(filtersClients))

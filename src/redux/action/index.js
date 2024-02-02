@@ -43,25 +43,25 @@ export const postRegisterAdmin = (register) => {
         method: "POST",
         body: JSON.stringify(register),
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
-      });
+      })
       if (res.ok) {
-        const data = await res.json();
-        console.log(data);
+        const data = await res.json()
+        console.log(data)
         dispatch({
           type: POST_REGISTER,
           payload: data.content,
         });
         alert("Registrazione effettuato con successo!");
       } else {
-        throw new Error("The login is fail!");
+        throw new Error('The login is fail!')
       }
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
-  };
-};
+  }
+}
 
 export const postLogin = (login) => {
   return async (dispatch) => {

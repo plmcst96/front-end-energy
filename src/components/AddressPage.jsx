@@ -165,7 +165,11 @@ const AddressPage = () => {
           <ListGroup>
             {addressData &&
               addressData.map((add) => (
-                <AddressElement key={add.uuid} address={add} />
+                <AddressElement
+                  key={add.uuid}
+                  add={add}
+                  handlePencilClick={handlePencilClick}
+                />
               ))}
           </ListGroup>
         </Col>
