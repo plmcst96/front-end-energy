@@ -7,9 +7,6 @@ export const POST_ADDRESS = "POST_ADDRESS";
 export const DELETE_ADDRESS = "DELETE_ADDRESS";
 
 
-export const token =
-  "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI5N2FkZDhhMy00MmNjLTQxYjMtOGFmMS0wNzQ1OWMxNzkyYTEiLCJpYXQiOjE3MDY4NzA3MjAsImV4cCI6MTcwNzQ3NTUyMH0.zsGKdyBgbule-ZxgYiZBXsmXelq6gHSoSaTXywhJ-Zk";
-
 
 export const postRegister = (register) => {
   return async (dispatch) => {
@@ -95,7 +92,7 @@ export const postLogin = (login) => {
   };
 };
 
-export const postAddress = (address) => {
+export const postAddress = (address, token) => {
   return async (dispatch) => {
     try {
       const res = await fetch("http://localhost:3001/api/addresses", {
@@ -124,7 +121,7 @@ export const postAddress = (address) => {
   };
 };
 
-export const getProvince = (province) => {
+export const getProvince = (province, token) => {
   return async (dispatch) => {
     try {
       const response = await fetch(
@@ -151,7 +148,7 @@ export const getProvince = (province) => {
   };
 };
 
-export const getTown = (town) => {
+export const getTown = (town, token) => {
   return async (dispatch) => {
     try {
       const response = await fetch(
@@ -178,7 +175,7 @@ export const getTown = (town) => {
   };
 };
 
-export const getAddress = () => {
+export const getAddress = (token) => {
   return async (dispatch) => {
     try {
       const res = await fetch("http://localhost:3001/api/addresses", {
@@ -205,7 +202,7 @@ export const getAddress = () => {
   };
 };
 
-export const removeAddress = (id) => {
+export const removeAddress = (id, token) => {
   return async (dispatch) => {
     try {
       const res = await fetch("http://localhost:3001/api/addresses/" + id, {

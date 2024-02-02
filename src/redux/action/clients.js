@@ -4,9 +4,8 @@ export const ADD_CLIENT = "ADD_CLIENT";
 export const GET_SINGLE_CLIENT = "GET_SINGLE_CLIENT";
 export const GET_CLIENTS_WITH_FILTER = "GET_CLIENTS_WITH_FILTER";
 
-export const token =
-  "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI5N2FkZDhhMy00MmNjLTQxYjMtOGFmMS0wNzQ1OWMxNzkyYTEiLCJpYXQiOjE3MDY4NzA3MjAsImV4cCI6MTcwNzQ3NTUyMH0.zsGKdyBgbule-ZxgYiZBXsmXelq6gHSoSaTXywhJ-Zk";
-export const getAllCLients = (filtersClients) => {
+
+export const getAllCLients = (filtersClients, token) => {
   const { minRevenue, maxRevenue, businessName } = filtersClients;
   return async (dispatch) => {
     try {
@@ -40,7 +39,7 @@ export const getAllCLients = (filtersClients) => {
   };
 };
 
-export const removeClient = (id) => {
+export const removeClient = (id, token) => {
   return async (dispatch) => {
     try {
       const res = await fetch("http://localhost:3001/clients/" + id, {
@@ -62,7 +61,7 @@ export const removeClient = (id) => {
     }
   };
 };
-export const addClient = (newClient) => {
+export const addClient = (newClient, token) => {
   return async (dispatch) => {
     try {
       const res = await fetch("http://localhost:3001/clients", {
@@ -87,7 +86,7 @@ export const addClient = (newClient) => {
   };
 };
 
-export const getSingleClient = (uuid) => {
+export const getSingleClient = (uuid, token) => {
   return async (dispatch) => {
     try {
       const res = await fetch("http://localhost:3001/clients/" + uuid, {
@@ -113,7 +112,7 @@ export const getSingleClient = (uuid) => {
   };
 };
 
-export const getAllCLientsWithFilter = (filtersClients) => {
+export const getAllCLientsWithFilter = (filtersClients, token) => {
   const minAmount = filtersClients.minAmount;
   console.log(minAmount);
   const maxAmount = filtersClients.maxAmount;

@@ -15,105 +15,110 @@ const AddressPage = () => {
   })
   const dispatch = useDispatch()
 
+  const role = useSelector((state) => state.register.role)
+  const token = useSelector((state) => state.register.token)
+
   useEffect(() => {
-    dispatch(getAddress())
+    dispatch(getAddress(token))
   }, [dispatch])
 
   return (
     <Container fluid className="mt-5">
-      <Row className=" ms-1 px-4 mb-3">
-        <Col>
-          <Row className="border border-secondary rounded  ">
-            {/* <Col className="p-0 text-center">Client Number</Col> */}
-            <Form className="p-4">
-              <Form.Group
-                className="mb-3"
-                controlId="exampleForm.ControlInput1"
-              >
-                <Form.Label>Street</Form.Label>
-                <Form.Control
-                  type="text"
-                  onChange={(e) => {
-                    setAddress({
-                      ...address,
-                      street: e.target.value,
-                    })
+      {role === "ADMIN" ? (
+        <Row className=" ms-1 px-4 mb-3">
+          <Col>
+            <Row className="border border-secondary rounded  ">
+              {/* <Col className="p-0 text-center">Client Number</Col> */}
+              <Form className="p-4">
+                <Form.Group
+                  className="mb-3"
+                  controlId="exampleForm.ControlInput1"
+                >
+                  <Form.Label>Street</Form.Label>
+                  <Form.Control
+                    type="text"
+                    onChange={(e) => {
+                      setAddress({
+                        ...address,
+                        street: e.target.value,
+                      })
+                    }}
+                  />
+                </Form.Group>
+                <Form.Group
+                  className="mb-3"
+                  controlId="exampleForm.ControlInput1"
+                >
+                  <Form.Label>Street Number</Form.Label>
+                  <Form.Control
+                    type="text"
+                    onChange={(e) => {
+                      setAddress({
+                        ...address,
+                        streetNumber: e.target.value,
+                      })
+                    }}
+                  />
+                </Form.Group>
+                <Form.Group
+                  className="mb-3"
+                  controlId="exampleForm.ControlInput1"
+                >
+                  <Form.Label>District</Form.Label>
+                  <Form.Control
+                    type="text"
+                    onChange={(e) => {
+                      setAddress({
+                        ...address,
+                        district: e.target.value,
+                      })
+                    }}
+                  />
+                </Form.Group>
+                <Form.Group
+                  className="mb-3"
+                  controlId="exampleForm.ControlInput1"
+                >
+                  <Form.Label>Zip Code</Form.Label>
+                  <Form.Control
+                    type="text"
+                    onChange={(e) => {
+                      setAddress({
+                        ...address,
+                        zipCode: e.target.value,
+                      })
+                    }}
+                  />
+                </Form.Group>
+                <Form.Group
+                  className="mb-3"
+                  controlId="exampleForm.ControlInput1"
+                >
+                  <Form.Label>Town</Form.Label>
+                  <Form.Control
+                    type="text"
+                    onChange={(e) => {
+                      setAddress({
+                        ...address,
+                        nameTown: e.target.value,
+                      })
+                    }}
+                  />
+                </Form.Group>
+                <Button
+                  type="submit"
+                  onClick={(e) => {
+                    e.preventDefault()
+                    dispatch(postAddress(address))
                   }}
-                />
-              </Form.Group>
-              <Form.Group
-                className="mb-3"
-                controlId="exampleForm.ControlInput1"
-              >
-                <Form.Label>Street Number</Form.Label>
-                <Form.Control
-                  type="text"
-                  onChange={(e) => {
-                    setAddress({
-                      ...address,
-                      streetNumber: e.target.value,
-                    })
-                  }}
-                />
-              </Form.Group>
-              <Form.Group
-                className="mb-3"
-                controlId="exampleForm.ControlInput1"
-              >
-                <Form.Label>District</Form.Label>
-                <Form.Control
-                  type="text"
-                  onChange={(e) => {
-                    setAddress({
-                      ...address,
-                      district: e.target.value,
-                    })
-                  }}
-                />
-              </Form.Group>
-              <Form.Group
-                className="mb-3"
-                controlId="exampleForm.ControlInput1"
-              >
-                <Form.Label>Zip Code</Form.Label>
-                <Form.Control
-                  type="text"
-                  onChange={(e) => {
-                    setAddress({
-                      ...address,
-                      zipCode: e.target.value,
-                    })
-                  }}
-                />
-              </Form.Group>
-              <Form.Group
-                className="mb-3"
-                controlId="exampleForm.ControlInput1"
-              >
-                <Form.Label>Town</Form.Label>
-                <Form.Control
-                  type="text"
-                  onChange={(e) => {
-                    setAddress({
-                      ...address,
-                      nameTown: e.target.value,
-                    })
-                  }}
-                />
-              </Form.Group>
-              <Button
-                type="submit"
-                onClick={(e) => {
-                  e.preventDefault()
-                  dispatch(postAddress(address))
-                }}
-              >
-                Save
-              </Button>
-            </Form>
-          </Row>
-        </Col>
-      </Row>
+                >
+                  Save
+                </Button>
+              </Form>
+            </Row>
+          </Col>
+        </Row>
+      ) : null}
       <Row className="p-4">
         <Col className="border border-secondary rounded ms-3 py-4">
           <Row className="ms-1 mb-3 d-flex justify-content-center">
@@ -137,7 +142,7 @@ const AddressPage = () => {
           <ListGroup>
             {addressData &&
               addressData.map((add) => (
-                <AddressElement key={add.uuid} address={add} />
+                <AddressElement key={add.uuid} address={add} token={token} />
               ))}
           </ListGroup>
         </Col>

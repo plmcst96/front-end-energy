@@ -3,10 +3,8 @@ export const DELETE_USER = 'DELETE_USER'
 export const SET_ADMIN = 'SET_ADMIN'
 export const SET_USER = 'SET_USER'
 
-export const token =
-  'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI5N2FkZDhhMy00MmNjLTQxYjMtOGFmMS0wNzQ1OWMxNzkyYTEiLCJpYXQiOjE3MDY4NzA3MjAsImV4cCI6MTcwNzQ3NTUyMH0.zsGKdyBgbule-ZxgYiZBXsmXelq6gHSoSaTXywhJ-Zk'
 
-export const getUsers = (user) => {
+export const getUsers = (user, token) => {
   return async (dispatch) => {
     try {
       const response = await fetch(
@@ -33,7 +31,7 @@ export const getUsers = (user) => {
   }
 }
 
-export const removeUser = (id) => {
+export const removeUser = (id, token) => {
   return async (dispatch) => {
     try {
       const response = await fetch('http://localhost:3001/users/' + id, {
@@ -57,7 +55,7 @@ export const removeUser = (id) => {
 }
 
 // "/{uuid}/set-admin"
-export const setAdmin = (id) => {
+export const setAdmin = (id, token) => {
   return async (dispatch) => {
     try {
       const response = await fetch(
@@ -83,7 +81,7 @@ export const setAdmin = (id) => {
 }
 
 // /{uuid}/set-user
-export const setUser = (id) => {
+export const setUser = (id, token) => {
   return async (dispatch) => {
     try {
       const response = await fetch(

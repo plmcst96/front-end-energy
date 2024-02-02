@@ -3,7 +3,7 @@ import { Trash3Fill } from "react-bootstrap-icons"
 import { useDispatch } from "react-redux"
 import { getAddress, removeAddress } from "../redux/action"
 
-const AddressElement = ({ address }) => {
+const AddressElement = ({ address, token }) => {
   const dispatch = useDispatch()
   return (
     <>
@@ -28,8 +28,8 @@ const AddressElement = ({ address }) => {
             <div>
               <Trash3Fill
                 onClick={() => {
-                  dispatch(removeAddress(address.uuid)).then(() => {
-                    dispatch(getAddress())
+                  dispatch(removeAddress(address.uuid, token)).then(() => {
+                    dispatch(getAddress(token))
                   })
                 }}
               />

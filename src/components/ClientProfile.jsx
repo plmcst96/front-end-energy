@@ -9,8 +9,10 @@ const ClientProfile = () => {
   console.log(uuid)
   const singleClient = useSelector((state) => state.client.singleClient)
   const dispatch = useDispatch()
+  const token = useSelector((state) => state.register.token)
+
   useEffect(() => {
-    dispatch(getSingleClient(uuid))
+    dispatch(getSingleClient(uuid, token))
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch])
   return (

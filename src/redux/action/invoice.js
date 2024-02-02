@@ -2,10 +2,8 @@ export const POST_INVOICE = "POST_INVOICE"
 export const GET_INVOICE = "GET_INVOICE"
 export const DELETE_INVOICE = "DELETE_INVOICE"
 
-export const token =
-    "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI5N2FkZDhhMy00MmNjLTQxYjMtOGFmMS0wNzQ1OWMxNzkyYTEiLCJpYXQiOjE3MDY4NzA3MjAsImV4cCI6MTcwNzQ3NTUyMH0.zsGKdyBgbule-ZxgYiZBXsmXelq6gHSoSaTXywhJ-Zk";
 
-export const postInvoice = (invoice) => {
+export const postInvoice = (invoice, token) => {
     return async (dispatch) => {
         try {
             const res = await fetch('http://localhost:3001/api/invoices', {
@@ -34,7 +32,7 @@ export const postInvoice = (invoice) => {
 
 }
 
-export const getInvoice = () => {
+export const getInvoice = (token) => {
     return async (dispatch) => {
         try {
             const response = await fetch(
@@ -62,7 +60,7 @@ export const getInvoice = () => {
     }
 }
 
-export const deleteInvoice = (id) => {
+export const deleteInvoice = (id, token) => {
     return async (dispatch) => {
         try {
             const res = await fetch("http://localhost:3001/api/invoices/" + id, {

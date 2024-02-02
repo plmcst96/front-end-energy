@@ -63,7 +63,9 @@ const Login = () => {
                     dispatch(postLogin(login))
                   }}
                 >
-                  Login
+                  <Link to="/clients" className="nav-link">
+                    Login
+                  </Link>
                 </Button>
                 <Button className="ms-3" type="submit">
                   <Link to="/register" className="nav-link">
