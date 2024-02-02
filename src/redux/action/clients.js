@@ -6,10 +6,20 @@ export const GET_CLIENTS_WITH_FILTER = "GET_CLIENTS_WITH_FILTER";
 
 export const token =
   "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJlNDAwMjE4OC03OTkwLTQyMDktYTY4Yy0wZGY0YzIyOWRiMTQiLCJpYXQiOjE3MDY4MDg2NDAsImV4cCI6MTcwNzQxMzQ0MH0.eZ44QiO3XIQ_IpyYzibjKF0ymrzlTu5rcVlcWpXxA2HBhADT1bMLILnMa-Bs9Fby";
-export const getAllCLients = () => {
+export const getAllCLients = (filtersClients) => {
+  const { minRevenue, maxRevenue, businessName } = filtersClients;
   return async (dispatch) => {
     try {
-      const res = await fetch("http://localhost:3001/clients", {
+      // Crea i parametri di query in base ai filtri disponibili
+      const queryParams = new URLSearchParams();
+      if (minRevenue) queryParams.append("minRevenue", minRevenue);
+      if (maxRevenue) queryParams.append("maxRevenue", maxRevenue);
+      if (businessName) queryParams.append("businessName", businessName);
+
+      // Costruisci la URL con i parametri di query
+      const url = `http://localhost:3001/clients?${queryParams.toString()}`;
+
+      const res = await fetch(url, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

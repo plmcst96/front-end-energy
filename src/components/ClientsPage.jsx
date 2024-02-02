@@ -1,39 +1,44 @@
-import { Button, Col, Container, Form, Modal, Row } from "react-bootstrap"
-import SingleClient from "./SingleClient"
-import { useEffect, useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
+import { Button, Col, Container, Form, Modal, Row } from "react-bootstrap";
+import SingleClient from "./SingleClient";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
   getAllCLients,
   addClient,
   getAllCLientsWithFilter,
-} from "../redux/action/clients"
-import { getAddress } from "../redux/action"
+} from "../redux/action/clients";
+import { getAddress } from "../redux/action";
 
 const ClientsPage = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-  const addressData = useSelector((state) => state.address.list)
+  const addressData = useSelector((state) => state.address.list);
 
-  const [show, setShow] = useState(false)
-  const [filterDate, setFilterDate] = useState("")
-  const [newClient, setNewClient] = useState(null)
-  const clientsData = useSelector((state) => state.client.clients.content)
-  const [searchClientInput, setSearchClientInput] = useState("")
+  const [show, setShow] = useState(false);
+  const [filterDate, setFilterDate] = useState("");
+  const [newClient, setNewClient] = useState(null);
+  const clientsData = useSelector((state) => state.client.clients.content);
+  const [searchClientInput, setSearchClientInput] = useState("");
   const [filtersClients, setFiltersClients] = useState({
-    minAmount: 0,
-    maxAmount: 10000,
-  })
-
-  const handleClose = () => setShow(false)
-  const handleShow = () => setShow(true)
+    minRevenue: 0,
+    maxRevenue: 10000000000,
+  });
+  console.log(filtersClients);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   useEffect(() => {
-    dispatch(getAllCLients())
-  }, [dispatch])
-
-  useEffect(() => {
-    dispatch(getAllCLientsWithFilter(filtersClients))
+    dispatch(getAllCLients(filtersClients));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [filtersClients])
+  }, [dispatch]);
+  useEffect(() => {
+    dispatch(getAllCLients(filtersClients));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filtersClients]);
+
+  // useEffect(() => {
+  //   dispatch(getAllCLientsWithFilter(filtersClients));
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [filtersClients]);
 
   return (
     <Container fluid>
@@ -51,7 +56,7 @@ const ClientsPage = () => {
                   setNewClient({
                     ...newClient,
                     businessName: e.target.value,
-                  })
+                  });
                 }}
               />
             </Form.Group>
@@ -63,7 +68,7 @@ const ClientsPage = () => {
                   setNewClient({
                     ...newClient,
                     VATNumber: e.target.value,
-                  })
+                  });
                 }}
               />
             </Form.Group>
@@ -75,7 +80,7 @@ const ClientsPage = () => {
                   setNewClient({
                     ...newClient,
                     email: e.target.value,
-                  })
+                  });
                 }}
               />
             </Form.Group>
@@ -89,7 +94,7 @@ const ClientsPage = () => {
                   setNewClient({
                     ...newClient,
                     inputDate: e.target.value,
-                  })
+                  });
                 }}
               />
             </Form.Group>
@@ -101,7 +106,7 @@ const ClientsPage = () => {
                   setNewClient({
                     ...newClient,
                     lastContactDate: e.target.value,
-                  })
+                  });
                 }}
               />
             </Form.Group>
@@ -113,7 +118,7 @@ const ClientsPage = () => {
                   setNewClient({
                     ...newClient,
                     annualRevenue: e.target.value,
-                  })
+                  });
                 }}
               />
             </Form.Group>
@@ -125,7 +130,7 @@ const ClientsPage = () => {
                   setNewClient({
                     ...newClient,
                     pec: e.target.value,
-                  })
+                  });
                 }}
               />
             </Form.Group>
@@ -137,7 +142,7 @@ const ClientsPage = () => {
                   setNewClient({
                     ...newClient,
                     telephoneNumberContact: e.target.value,
-                  })
+                  });
                 }}
               />
             </Form.Group>
@@ -149,7 +154,7 @@ const ClientsPage = () => {
                   setNewClient({
                     ...newClient,
                     telephone: e.target.value,
-                  })
+                  });
                 }}
               />
             </Form.Group>
@@ -162,7 +167,7 @@ const ClientsPage = () => {
                   setNewClient({
                     ...newClient,
                     contactEmail: e.target.value,
-                  })
+                  });
                 }}
               />
             </Form.Group>
@@ -174,7 +179,7 @@ const ClientsPage = () => {
                   setNewClient({
                     ...newClient,
                     name: e.target.value,
-                  })
+                  });
                 }}
               />
             </Form.Group>
@@ -186,7 +191,7 @@ const ClientsPage = () => {
                   setNewClient({
                     ...newClient,
                     surname: e.target.value,
-                  })
+                  });
                 }}
               />
             </Form.Group>
@@ -198,7 +203,7 @@ const ClientsPage = () => {
                   setNewClient({
                     ...newClient,
                     clientType: e.target.value,
-                  })
+                  });
                 }}
               />
             </Form.Group>
@@ -210,16 +215,16 @@ const ClientsPage = () => {
                   setNewClient({
                     ...newClient,
                     legalAddress: e.target.value,
-                  })
+                  });
                 }}
                 onClick={() => {
-                  dispatch(getAddress())
+                  dispatch(getAddress());
                 }}
               >
                 <option>Select Address</option>
                 {addressData &&
                   addressData.map((add) => (
-                    <option>
+                    <option key={add.uuid}>
                       {add.street +
                         " " +
                         add.streetNumber +
@@ -239,10 +244,10 @@ const ClientsPage = () => {
                   setNewClient({
                     ...newClient,
                     legalAddress: e.target.value,
-                  })
+                  });
                 }}
                 onClick={() => {
-                  dispatch(getAddress())
+                  dispatch(getAddress());
                 }}
               >
                 <option>Select Address</option>
@@ -269,10 +274,10 @@ const ClientsPage = () => {
           <Button
             variant="primary"
             onClick={() => {
-              handleClose()
+              handleClose();
               dispatch(addClient(newClient)).then(() => {
-                dispatch(getAllCLients())
-              })
+                dispatch(getAllCLients(filtersClients));
+              });
             }}
           >
             Save Changes
@@ -291,7 +296,11 @@ const ClientsPage = () => {
                   <Form.Control
                     placeholder="Insert the name"
                     onChange={(e) => {
-                      setSearchClientInput(e.target.value)
+                      // setSearchClientInput(e.target.value);
+                      setFiltersClients({
+                        ...filtersClients,
+                        businessName: e.target.value,
+                      });
                     }}
                   />
                 </Form.Group>
@@ -311,20 +320,22 @@ const ClientsPage = () => {
               <div>Filtra per: </div>
               <Form.Label>Min revenue</Form.Label>
               <Form.Control
+                type="number"
                 onChange={(e) => {
                   setFiltersClients({
                     ...filtersClients,
-                    minAmount: e.target.value,
-                  })
+                    minRevenue: e.target.value,
+                  });
                 }}
               />
               <Form.Label>Max revenue</Form.Label>
               <Form.Control
+                type="number"
                 onChange={(e) => {
                   setFiltersClients({
                     ...filtersClients,
-                    maxAmount: e.target.value,
-                  })
+                    maxRevenue: e.target.value,
+                  });
                 }}
               />
 
@@ -333,7 +344,7 @@ const ClientsPage = () => {
                 <Form.Control
                   type="date"
                   onChange={(e) => {
-                    setFilterDate(e.target.value)
+                    setFilterDate(e.target.value);
                   }}
                 />
                 <Form.Label>Last contact date</Form.Label>
@@ -343,7 +354,10 @@ const ClientsPage = () => {
           </div>
         </Col>
         <Col className="p-0 mt-4" xs={12} md={10}>
-          <div className="border border-1 border-black  rounded-3 ">
+          <div
+            className="border border-1 border-black rounded-3"
+            style={{ height: "1000px" }}
+          >
             <div className="d-flex justify-content-center py-3">
               <h1>Lista clienti</h1>
             </div>
@@ -381,7 +395,7 @@ const ClientsPage = () => {
                         .includes(searchClientInput.toLowerCase())
                     )
                     .map((client) => {
-                      return <SingleClient client={client} key={client.uuid} />
+                      return <SingleClient client={client} key={client.uuid} />;
                     })}
               </Row>
             </Row>
@@ -389,7 +403,7 @@ const ClientsPage = () => {
         </Col>
       </Row>
     </Container>
-  )
-}
+  );
+};
 
-export default ClientsPage
+export default ClientsPage;

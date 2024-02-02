@@ -34,7 +34,7 @@ const clientReducer = (state = initialState, action) => {
     case GET_CLIENTS_WITH_FILTER:
       return {
         ...state,
-        clientsFiltered: action.payload,
+        clients: action.payload,
       };
 
     default:
