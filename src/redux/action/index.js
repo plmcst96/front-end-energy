@@ -120,7 +120,7 @@ export const postAddress = (address, token) => {
   };
 };
 
-export const getProvince = (province, token) => {
+export const getProvince = (token) => {
   return async (dispatch) => {
     try {
       const response = await fetch(
@@ -147,7 +147,7 @@ export const getProvince = (province, token) => {
   };
 };
 
-export const getTown = (town, token) => {
+export const getTown = (token) => {
   return async (dispatch) => {
     try {
       const response = await fetch(

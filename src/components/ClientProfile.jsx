@@ -1,20 +1,20 @@
-import { Card, Col, Container, ListGroup, Row } from "react-bootstrap"
-import { useParams } from "react-router-dom"
-import { getSingleClient } from "../redux/action/clients"
-import { useDispatch, useSelector } from "react-redux"
-import { useEffect } from "react"
+import { Card, Col, Container, ListGroup, Row } from "react-bootstrap";
+import { useParams } from "react-router-dom";
+import { getSingleClient } from "../redux/action/clients";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
 
 const ClientProfile = () => {
-  const { uuid } = useParams()
-  console.log(uuid)
-  const singleClient = useSelector((state) => state.client.singleClient)
-  const dispatch = useDispatch()
-  const token = useSelector((state) => state.register.token)
+  const { uuid } = useParams();
+  console.log(uuid);
+  const singleClient = useSelector((state) => state.client.singleClient);
+  const dispatch = useDispatch();
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
-    dispatch(getSingleClient(uuid, token))
+    dispatch(getSingleClient(uuid, token));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch])
+  }, [dispatch]);
   return (
     <Container>
       <Row className="mt-5 justify-content-center">
@@ -59,7 +59,7 @@ const ClientProfile = () => {
         </Col>
       </Row>
     </Container>
-  )
-}
+  );
+};
 
-export default ClientProfile
+export default ClientProfile;

@@ -11,7 +11,7 @@ import { getAddress } from "../redux/action";
 
 const ClientsPage = () => {
   const dispatch = useDispatch();
-
+  const tokenStorage = localStorage.getItem("token");
   const addressData = useSelector((state) => state.address.list);
 
   const [show, setShow] = useState(false);
@@ -27,11 +27,11 @@ const ClientsPage = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   useEffect(() => {
-    dispatch(getAllCLients(filtersClients));
+    dispatch(getAllCLients(filtersClients, tokenStorage));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch]);
   useEffect(() => {
-    dispatch(getAllCLients(filtersClients));
+    dispatch(getAllCLients(filtersClients, tokenStorage));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filtersClients]);
 
@@ -39,7 +39,7 @@ const ClientsPage = () => {
   const token = useSelector((state) => state.register.token);
 
   useEffect(() => {
-    dispatch(getAddress(filtersClients));
+    dispatch(getAddress(filtersClients, tokenStorage));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -278,8 +278,8 @@ const ClientsPage = () => {
             variant="primary"
             onClick={() => {
               handleClose();
-              dispatch(addClient(newClient)).then(() => {
-                dispatch(getAllCLients(filtersClients));
+              dispatch(addClient(newClient, token)).then(() => {
+                dispatch(getAllCLients(filtersClients, token));
               });
             }}
           >

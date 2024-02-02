@@ -1,6 +1,6 @@
 import { Button, Col, Form, Modal, Row } from "react-bootstrap";
 import { EnvelopeAt, PencilFill, Trash3Fill } from "react-bootstrap-icons";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { removeClient } from "../redux/action/clients";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -10,6 +10,8 @@ import { getAddress } from "../redux/action";
 const SingleClient = ({ client, addressData }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const token = localStorage.getItem("token");
+
   const [show, setShow] = useState(false);
   const [showEmail, setShowEmail] = useState(false);
   const [editedClient, setEditedClient] = useState(null);
@@ -27,7 +29,7 @@ const SingleClient = ({ client, addressData }) => {
   const [emailContent, setEmailContent] = useState(null);
 
   useEffect(() => {
-    dispatch(getAddress());
+    dispatch(getAddress(token));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
@@ -67,7 +69,7 @@ const SingleClient = ({ client, addressData }) => {
             variant="primary"
             onClick={() => {
               handleCloseEmail();
-              dispatch(sendMail(client.uuid, emailContent));
+              dispatch(sendMail(client.uuid, emailContent, token));
             }}
           >
             Send
@@ -309,9 +311,11 @@ const SingleClient = ({ client, addressData }) => {
             variant="primary"
             onClick={() => {
               handleClose();
-              dispatch(editClient(client.uuid, editedClient)).then(() => {
-                dispatch(getAllCLients(filtersClients));
-              });
+              dispatch(editClient(client.uuid, editedClient, token)).then(
+                () => {
+                  dispatch(getAllCLients(filtersClients, token));
+                }
+              );
             }}
           >
             Save Changes
@@ -358,8 +362,8 @@ const SingleClient = ({ client, addressData }) => {
               <Trash3Fill
                 className="mt-3 text-danger fs-5"
                 onClick={() => {
-                  dispatch(removeClient(client.uuid)).then(() => {
-                    dispatch(getAllCLients(filtersClients));
+                  dispatch(removeClient(client.uuid, token)).then(() => {
+                    dispatch(getAllCLients(filtersClients, token));
                   });
                 }}
               />

@@ -1,10 +1,11 @@
-import { Col, ListGroupItem, Row } from "react-bootstrap"
-import { Trash3Fill } from "react-bootstrap-icons"
-import { deleteInvoice, getInvoice } from "../redux/action/invoice"
-import { useDispatch } from "react-redux"
+import { Col, ListGroupItem, Row } from "react-bootstrap";
+import { Trash3Fill } from "react-bootstrap-icons";
+import { deleteInvoice, getInvoice } from "../redux/action/invoice";
+import { useDispatch, useSelector } from "react-redux";
 
 const InvoiceElement = ({ invoice }) => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const token = localStorage.getItem("token");
 
   return (
     <ListGroupItem className="p-0 py-2">
@@ -28,16 +29,16 @@ const InvoiceElement = ({ invoice }) => {
           <div>
             <Trash3Fill
               onClick={() => {
-                dispatch(deleteInvoice(invoice.uuid)).then(() => {
-                  dispatch(getInvoice())
-                })
+                dispatch(deleteInvoice(invoice.uuid, token)).then(() => {
+                  dispatch(getInvoice(token));
+                });
               }}
             />
           </div>
         </Col>
       </Row>
     </ListGroupItem>
-  )
-}
+  );
+};
 
-export default InvoiceElement
+export default InvoiceElement;

@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react"
-import { Container, Row, Col, Button, Form, ListGroup } from "react-bootstrap"
-import { useDispatch, useSelector } from "react-redux"
-import { getInvoice, postInvoice } from "../redux/action/invoice"
-import InvoiceElement from "./InvoiceElement"
+import { useEffect, useState } from "react";
+import { Container, Row, Col, Button, Form, ListGroup } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { getInvoice, postInvoice } from "../redux/action/invoice";
+import InvoiceElement from "./InvoiceElement";
 
 const Invoice = () => {
   const [invoice, setInvoice] = useState({
@@ -11,17 +11,18 @@ const Invoice = () => {
     number: "",
     invoiceState: "",
     clientId: "",
-  })
+  });
 
-  const role = useSelector((state) => state.register.role)
+  const role = useSelector((state) => state.register.role);
+  const token = localStorage.getItem("token");
+  console.log(role);
+  const invoiceData = useSelector((state) => state.invoice.list);
 
-  const invoiceData = useSelector((state) => state.invoice.list)
-
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getInvoice())
-  }, [dispatch])
+    dispatch(getInvoice(token));
+  }, [dispatch]);
 
   return (
     <Container fluid className="mt-5">
@@ -29,76 +30,76 @@ const Invoice = () => {
         <Col>
           <Row className="border border-secondary rounded  ">
             {/* <Col className="p-0 text-center">Client Number</Col> */}
-            {role === "ADMIN" ? (
-              <Form className="p-4">
-                <Form.Group
-                  className="mb-3"
-                  controlId="exampleForm.ControlInput1"
+            {/* {role === "ADMIN" ? ( */}
+            <Form className="p-4">
+              <Form.Group
+                className="mb-3"
+                controlId="exampleForm.ControlInput1"
+              >
+                <Form.Label>Date</Form.Label>
+                <Form.Control
+                  type="text"
+                  onChange={(e) => {
+                    setInvoice({
+                      ...invoice,
+                      date: e.target.value,
+                    });
+                  }}
+                />
+              </Form.Group>
+              <Form.Group
+                className="mb-3"
+                controlId="exampleForm.ControlInput1"
+              >
+                <Form.Label>Amount</Form.Label>
+                <Form.Control
+                  type="text"
+                  onChange={(e) => {
+                    setInvoice({
+                      ...invoice,
+                      amount: e.target.value,
+                    });
+                  }}
+                />
+              </Form.Group>
+              <Form.Group
+                className="mb-3"
+                controlId="exampleForm.ControlInput1"
+              >
+                <Form.Label>Number Invoice</Form.Label>
+                <Form.Control
+                  type="text"
+                  onChange={(e) => {
+                    setInvoice({
+                      ...invoice,
+                      number: e.target.value,
+                    });
+                  }}
+                />
+              </Form.Group>
+              <Form.Group
+                className="mb-3"
+                controlId="exampleForm.ControlInput1"
+              >
+                <Form.Label>Invoice State</Form.Label>
+                <Form.Select
+                  aria-label="Default select example"
+                  onChange={(e) => {
+                    setInvoice({
+                      ...invoice,
+                      invoiceState: e.target.value,
+                    });
+                  }}
                 >
-                  <Form.Label>Date</Form.Label>
-                  <Form.Control
-                    type="text"
-                    onChange={(e) => {
-                      setInvoice({
-                        ...invoice,
-                        date: e.target.value,
-                      })
-                    }}
-                  />
-                </Form.Group>
-                <Form.Group
-                  className="mb-3"
-                  controlId="exampleForm.ControlInput1"
-                >
-                  <Form.Label>Amount</Form.Label>
-                  <Form.Control
-                    type="text"
-                    onChange={(e) => {
-                      setInvoice({
-                        ...invoice,
-                        amount: e.target.value,
-                      })
-                    }}
-                  />
-                </Form.Group>
-                <Form.Group
-                  className="mb-3"
-                  controlId="exampleForm.ControlInput1"
-                >
-                  <Form.Label>Number Invoice</Form.Label>
-                  <Form.Control
-                    type="text"
-                    onChange={(e) => {
-                      setInvoice({
-                        ...invoice,
-                        number: e.target.value,
-                      })
-                    }}
-                  />
-                </Form.Group>
-                <Form.Group
-                  className="mb-3"
-                  controlId="exampleForm.ControlInput1"
-                >
-                  <Form.Label>Invoice State</Form.Label>
-                  <Form.Select
-                    aria-label="Default select example"
-                    onChange={(e) => {
-                      setInvoice({
-                        ...invoice,
-                        invoiceState: e.target.value,
-                      })
-                    }}
-                  >
-                    <option>Select State</option>
-                    <option>IN_PROGRESS</option>
-                    <option>SENT</option>
-                    <option>DRAFT</option>
-                    <option>DISCARDED</option>
-                    <option>DELIVERED</option>
-                    <option>SENT_NOT_DELIVERED</option>
-                  </Form.Select>
-                  {/*  <Form.Control
+                  <option>Select State</option>
+                  <option>IN_PROGRESS</option>
+                  <option>SENT</option>
+                  <option>DRAFT</option>
+                  <option>DISCARDED</option>
+                  <option>DELIVERED</option>
+                  <option>SENT_NOT_DELIVERED</option>
+                </Form.Select>
+                {/*  <Form.Control
                   type="text"
                   onChange={(e) => {
                     setInvoice({
@@ -107,33 +108,33 @@ const Invoice = () => {
                     })
                   }}
                 /> */}
-                </Form.Group>
-                <Form.Group
-                  className="mb-3"
-                  controlId="exampleForm.ControlInput1"
-                >
-                  <Form.Label>Client</Form.Label>
-                  <Form.Control
-                    type="text"
-                    onChange={(e) => {
-                      setInvoice({
-                        ...invoice,
-                        clientId: e.target.value,
-                      })
-                    }}
-                  />
-                </Form.Group>
-                <Button
-                  type="submit"
-                  onClick={(e) => {
-                    e.preventDefault()
-                    dispatch(postInvoice(invoice))
+              </Form.Group>
+              <Form.Group
+                className="mb-3"
+                controlId="exampleForm.ControlInput1"
+              >
+                <Form.Label>Client</Form.Label>
+                <Form.Control
+                  type="text"
+                  onChange={(e) => {
+                    setInvoice({
+                      ...invoice,
+                      clientId: e.target.value,
+                    });
                   }}
-                >
-                  Save
-                </Button>
-              </Form>
-            ) : null}
+                />
+              </Form.Group>
+              <Button
+                type="submit"
+                onClick={(e) => {
+                  e.preventDefault();
+                  dispatch(postInvoice(invoice, token));
+                }}
+              >
+                Save
+              </Button>
+            </Form>
+            {/* ) : null} */}
           </Row>
         </Col>
       </Row>
@@ -166,7 +167,7 @@ const Invoice = () => {
         </Col>
       </Row>
     </Container>
-  )
-}
+  );
+};
 
-export default Invoice
+export default Invoice;
