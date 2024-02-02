@@ -1,7 +1,6 @@
 import { Col, ListGroupItem, Row } from "react-bootstrap"
 import { Trash3Fill } from "react-bootstrap-icons"
 import { useDispatch } from "react-redux"
-import { removeClient } from "../redux/action/clients"
 import { getAddress, removeAddress } from "../redux/action"
 
 const AddressElement = ({ address }) => {
