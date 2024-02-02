@@ -36,8 +36,6 @@ const ClientsPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filtersClients])
 
-  const token = useSelector((state) => state.register.token)
-
   useEffect(() => {
     dispatch(getAddress(filtersClients, tokenStorage))
     // eslint-disable-next-line react-hooks/exhaustive-deps
