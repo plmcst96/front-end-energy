@@ -11,7 +11,7 @@ const SingleClient = ({ client, addressData }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
-
+  const role = localStorage.getItem("role");
   const [show, setShow] = useState(false);
   const [showEmail, setShowEmail] = useState(false);
   const [editedClient, setEditedClient] = useState(null);
@@ -346,28 +346,32 @@ const SingleClient = ({ client, addressData }) => {
             <p>{client.inputDate}</p>
           </Col>
           <Col className="cursor">
-            <div className="d-flex justify-content-center gap-3">
-              <EnvelopeAt
-                className="mt-3 fs-5"
-                onClick={() => {
-                  handleShowEmail();
-                }}
-              />
-              <PencilFill
-                className="mt-3 fs-5"
-                onClick={() => {
-                  handleShow();
-                }}
-              />
-              <Trash3Fill
-                className="mt-3 text-danger fs-5"
-                onClick={() => {
-                  dispatch(removeClient(client.uuid, token)).then(() => {
-                    dispatch(getAllCLients(filtersClients, token));
-                  });
-                }}
-              />
-            </div>
+            {role === "ADMIN" ? (
+              <div className="d-flex justify-content-center gap-3">
+                <EnvelopeAt
+                  className="mt-3 fs-5"
+                  onClick={() => {
+                    handleShowEmail();
+                  }}
+                />
+                <PencilFill
+                  className="mt-3 fs-5"
+                  onClick={() => {
+                    handleShow();
+                  }}
+                />
+                <Trash3Fill
+                  className="mt-3 text-danger fs-5"
+                  onClick={() => {
+                    dispatch(removeClient(client.uuid, token)).then(() => {
+                      dispatch(getAllCLients(filtersClients, token));
+                    });
+                  }}
+                />
+              </div>
+            ) : (
+              ""
+            )}
           </Col>
         </Row>
       </Col>

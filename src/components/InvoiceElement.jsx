@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 const InvoiceElement = ({ invoice }) => {
   const dispatch = useDispatch();
   const token = localStorage.getItem("token");
-
+  const role = localStorage.getItem("role");
   return (
     <ListGroupItem className="p-0 py-2">
       <Row className="d-flex justify-content-center">
@@ -23,18 +23,22 @@ const InvoiceElement = ({ invoice }) => {
           {invoice.invoiceState}
         </Col>
         <Col sm={2} className="text-center">
-          {invoice.clientId}
+          {invoice.client.businessName}
         </Col>
         <Col className="cursor text-center">
-          <div>
-            <Trash3Fill
-              onClick={() => {
-                dispatch(deleteInvoice(invoice.uuid, token)).then(() => {
-                  dispatch(getInvoice(token));
-                });
-              }}
-            />
-          </div>
+          {role === "ADMIN" ? (
+            <div>
+              <Trash3Fill
+                onClick={() => {
+                  dispatch(deleteInvoice(invoice.uuid, token)).then(() => {
+                    dispatch(getInvoice(token));
+                  });
+                }}
+              />
+            </div>
+          ) : (
+            ""
+          )}
         </Col>
       </Row>
     </ListGroupItem>

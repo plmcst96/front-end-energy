@@ -6,7 +6,7 @@ import { useState } from "react";
 
 const AddressElement = ({ add, handlePencilClick, token }) => {
   const dispatch = useDispatch();
-
+  const role = localStorage.getItem("role");
   return (
     <>
       <ListGroupItem className="p-0 py-2">
@@ -27,24 +27,28 @@ const AddressElement = ({ add, handlePencilClick, token }) => {
             {add.town.name}
           </Col>
           <Col className="cursor text-center">
-            <div>
-              <Trash3Fill
-                onClick={() => {
-                  dispatch(removeAddress(add.uuid, token)).then(() => {
-                    dispatch(getAddress(token));
-                  });
-                }}
-              />
-              <PencilFill
-                className="ms-3"
-                onClick={() => {
-                  // dispatch(updateAddress(add.uuid)).then(() => {
-                  //   dispatch(getAddress())
-                  // })
-                  handlePencilClick(add);
-                }}
-              />
-            </div>
+            {role === "ADMIN" ? (
+              <div>
+                <Trash3Fill
+                  onClick={() => {
+                    dispatch(removeAddress(add.uuid, token)).then(() => {
+                      dispatch(getAddress(token));
+                    });
+                  }}
+                />
+                <PencilFill
+                  className="ms-3"
+                  onClick={() => {
+                    // dispatch(updateAddress(add.uuid)).then(() => {
+                    //   dispatch(getAddress())
+                    // })
+                    handlePencilClick(add);
+                  }}
+                />
+              </div>
+            ) : (
+              ""
+            )}
           </Col>
         </Row>
       </ListGroupItem>

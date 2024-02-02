@@ -11,7 +11,6 @@ const UserElement = () => {
     dispatch(getUsers(token));
   }, [dispatch]);
   const token = localStorage.getItem("token");
-  console.log(token);
   return (
     <Container fluid>
       <Row className="flex-column">
