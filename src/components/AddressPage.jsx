@@ -1,23 +1,31 @@
-import React, { useEffect, useState } from "react"
-import { Container, Row, Col, Button, Form, ListGroup } from "react-bootstrap"
-import { useDispatch, useSelector } from "react-redux"
-import { getAddress, postAddress } from "../redux/action"
-import AddressElement from "./AddressElement"
+import React, { useEffect, useState } from 'react'
+import { Container, Row, Col, Button, Form, ListGroup } from 'react-bootstrap'
+import { useDispatch, useSelector } from 'react-redux'
+import { getAddress, postAddress, updateAddress } from '../redux/action'
+import AddressElement from './AddressElement'
 
 const AddressPage = () => {
   const addressData = useSelector((state) => state.address.list)
   const [address, setAddress] = useState({
-    street: "",
-    streetNumber: "",
-    district: "",
-    zipCode: "",
-    nameTown: "",
+    street: '',
+    streetNumber: '',
+    district: '',
+    zipCode: '',
+    nameTown: '',
   })
+  const [updatedAdd, setUpdatedAdd] = useState(null)
   const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(getAddress())
   }, [dispatch])
+
+  const handlePencilClick = (clickedAddress) => {
+    setAddress(clickedAddress)
+    setIdAddress(clickedAddress.uuid)
+  }
+
+  const [idAddress, setIdAddress] = useState('')
 
   return (
     <Container fluid className="mt-5">
@@ -33,6 +41,7 @@ const AddressPage = () => {
                 <Form.Label>Street</Form.Label>
                 <Form.Control
                   type="text"
+                  value={address.street}
                   onChange={(e) => {
                     setAddress({
                       ...address,
@@ -48,6 +57,7 @@ const AddressPage = () => {
                 <Form.Label>Street Number</Form.Label>
                 <Form.Control
                   type="text"
+                  value={address.streetNumber}
                   onChange={(e) => {
                     setAddress({
                       ...address,
@@ -63,6 +73,7 @@ const AddressPage = () => {
                 <Form.Label>District</Form.Label>
                 <Form.Control
                   type="text"
+                  value={address.district}
                   onChange={(e) => {
                     setAddress({
                       ...address,
@@ -78,6 +89,7 @@ const AddressPage = () => {
                 <Form.Label>Zip Code</Form.Label>
                 <Form.Control
                   type="text"
+                  value={address.zipCode}
                   onChange={(e) => {
                     setAddress({
                       ...address,
@@ -93,6 +105,7 @@ const AddressPage = () => {
                 <Form.Label>Town</Form.Label>
                 <Form.Control
                   type="text"
+                  // value={address.nameTown ? address.nameTown : ''}
                   onChange={(e) => {
                     setAddress({
                       ...address,
@@ -105,10 +118,22 @@ const AddressPage = () => {
                 type="submit"
                 onClick={(e) => {
                   e.preventDefault()
-                  dispatch(postAddress(address))
+                  dispatch(postAddress(updateAddress))
                 }}
               >
                 Save
+              </Button>
+              <Button
+                type="submit"
+                onClick={(e) => {
+                  e.preventDefault()
+                  dispatch(updateAddress(idAddress, address)).then(() => {
+                    dispatch(getAddress())
+                  })
+                  console.log(address)
+                }}
+              >
+                Update
               </Button>
             </Form>
           </Row>
@@ -137,7 +162,11 @@ const AddressPage = () => {
           <ListGroup>
             {addressData &&
               addressData.map((add) => (
-                <AddressElement key={add.uuid} address={add} />
+                <AddressElement
+                  key={add.uuid}
+                  add={add}
+                  handlePencilClick={handlePencilClick}
+                />
               ))}
           </ListGroup>
         </Col>
